@@ -621,6 +621,7 @@
         <div class="price">
           <div class="row"><span class="won">29,900원</span><span class="per">/ 월 · VAT 별도</span></div>
           <div class="sub" data-v="유미니비용"><b>세팅비 1,000,000원 (VAT 별도) · 최초 1회</b></div>
+          <div class="sub" data-v="유미니추가" data-sec="추가가맹" style="display:none"></div>
           <div class="sub"><b>8월 이후 가입시 월 19,900원(VAT 별도)</b> — 8월 이전 월 14,900원(VAT 별도)</div>
         </div>
       </article>
@@ -1160,10 +1161,28 @@ function applyDahogwan(p1, p2, p3){
   showSec('다호관', true);
 }
 
+/* 기존 클럽하와이 회원이 유미니를 추가로 가맹할 때 — 유미니 카드 밑 한 줄 */
+function applyAddon(c){
+  const 정가 = Number(c.추가가맹정가 || 0), 할인 = Number(c.추가가맹할인가 || 0);
+  if (!(정가 > 0) && !(할인 > 0)) return;
+  const 금액 = (할인 > 0 && 할인 < 정가)
+    ? '<s>' + 원(정가) + '원</s> → ' + 원(할인) + '원'
+    : 원(할인 > 0 ? 할인 : 정가) + '원';
+  let 기한 = '';
+  const d = String(c.추가가맹기한 || '').slice(0, 10);
+  if (/^\d{4}-\d{2}-\d{2}$/.test(d)) {
+    const [, m, day] = d.split('-');
+    기한 = ' · <b>' + Number(m) + '월 ' + Number(day) + '일까지 가입 시</b>';
+  }
+  setText('유미니추가', '<b>이미 클럽하와이 회원이시면 유미니 추가 가맹 ' + 금액 + ' (VAT 별도)</b>' + 기한);
+  showSec('추가가맹', true);
+}
+
 function applyConfig(c){
   if (!c || c.찾음 === false) return;              // 시트에 그 회차 줄이 없으면 지금 화면 그대로
   if (String(c.할인혜택 || '').indexOf('있') === 0) applyDiscount(c);
   if (String(c.다호관혜택 || '').indexOf('있') === 0) applyDahogwan(Number(c.다호관1호관), Number(c.다호관2_5호관), Number(c.다호관6_10호관));
+  if (String(c.추가가맹혜택 || '').indexOf('있') === 0) applyAddon(c);
 }
 
 (function loadConfig(){
