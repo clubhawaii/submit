@@ -384,6 +384,31 @@
   .vatnote b{color:var(--ink-mid);font-weight:700}
 
 
+  /* ── 다호관 월 비용 ───────────────── */
+  .multi{background:linear-gradient(180deg,#FFF3F8 0%,#fff 60%);border:1px solid var(--pink-line);border-radius:22px;padding:30px 26px;box-shadow:0 8px 28px rgba(255,32,125,0.07)}
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
+  .tier{background:#fff;border:1px solid var(--pink-line);border-radius:16px;padding:16px 12px;text-align:center}
+  .tier .rng{font-size:12px;font-weight:700;color:var(--pink-deep);margin-bottom:7px;letter-spacing:-0.3px;word-break:keep-all}
+  .tier .amt{font-size:21px;font-weight:800;color:var(--ink);letter-spacing:-0.7px;line-height:1.1}
+  .tier .amt small{font-size:12px;font-weight:600;color:var(--ink-mid)}
+  .tier .off{font-size:11.5px;color:var(--pink);font-weight:700;margin-top:5px}
+  .tier .off.zero{color:var(--ink-light);font-weight:600}
+
+  .chart-cap{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:-0.3px;margin:0 0 14px;text-align:center}
+  .bars{margin:0 0 20px}
+  .bar-row{display:flex;align-items:center;gap:12px;margin-bottom:11px}
+  .bar-row .lb{flex:0 0 40px;font-size:13.5px;font-weight:800;letter-spacing:-0.4px;color:var(--ink)}
+  .bar-row .track{flex:1;background:var(--pink-soft);border-radius:999px;height:26px;min-width:0;overflow:hidden}
+  .bar-row .fill{display:block;height:100%;background:linear-gradient(90deg,#FF7FB4,#FF207D);border-radius:999px;box-shadow:0 2px 8px rgba(255,32,125,0.22)}
+  .bar-row.best .fill{background:linear-gradient(90deg,#E0126A,#FF207D)}
+  .bar-row .val{flex:0 0 130px;text-align:right;line-height:1.25}
+  .bar-row .val b{display:block;font-size:13px;font-weight:800;color:var(--ink);letter-spacing:-0.3px;white-space:nowrap}
+  .bar-row.best .val b{color:var(--pink-deep)}
+  .bar-row .val small{font-size:11.5px;color:var(--ink-mid);letter-spacing:-0.2px;white-space:nowrap}
+  .multi .foot-note{font-size:12.5px;color:var(--ink-mid);letter-spacing:-0.3px;text-align:center;margin:4px 0 0;word-break:keep-all}
+  .multi .foot-note b{color:var(--pink-deep);font-weight:800}
+  .biz{margin-top:14px;text-align:center;font-size:12.5px;color:var(--ink-light);letter-spacing:-0.3px}
+
   /* ── 세팅비 항목 부연설명 ─────────── */
   .items li .in em{
     display:block;font-style:normal;font-size:11.5px;color:var(--ink-light);
@@ -536,37 +561,17 @@
 </head>
 <body>
 
-<header class="hero">
-  <div class="eyebrow">설명회 참석 원장님 전용</div>
-  <h1>설명회, 잘 들으셨나요?</h1>
-  <p>오늘 들은 이야기를 우리 학원에 어떻게 적용할지,<br>담당자가 하나씩 정리해서 알려드릴게요.</p>
+<header class="hero" data-sec="인사">
+  <div class="eyebrow" data-v="윗줄">설명회 참석 원장님 전용</div>
+  <h1 data-v="제목">설명회, 잘 들으셨나요?</h1>
+  <p data-v="설명">오늘 들은 이야기를 우리 학원에 어떻게 적용할지,<br>담당자가 하나씩 정리해서 알려드릴게요.</p>
 </header>
 
 <div class="wrap">
 
-  <!-- 오늘 한정 혜택 -->
-  <section class="promo">
-    <h2>오늘 설명회 참석 원장님 한정 세팅비 혜택</h2>
-    <div class="deals">
-      <div class="deal">
-        <div class="who">하와이 + 유미니 함께 가맹</div>
-        <div class="price"><s>세팅비 총 2,000,000원</s><br>총 1,000,000원<i>VAT 별도</i></div>
-      </div>
-      <div class="deal">
-        <div class="who">하와이 또는 유미니 하나만 가맹</div>
-        <div class="price">세팅비 각 1,000,000원<i>VAT 별도</i></div>
-      </div>
-      <div class="deal">
-        <div class="who">이미 클럽하와이 회원 · 유미니 추가 가맹</div>
-        <div class="price"><s>세팅비 1,000,000원</s><br>300,000원<i>VAT 별도 · 8월 가입까지는 가맹비 무료</i></div>
-
-      </div>
-    </div>
-    <p class="note">세팅비는 최초 1회만 결제됩니다. (VAT 별도)</p>
-  </section>
 
   <!-- 서비스 안내 (이용가능서비스 · 비용) -->
-  <section class="block">
+  <section class="block" data-sec="서비스안내">
     <!-- 서비스 안내 (이용가능서비스 · 비용) -->
     <div class="cols">
 
@@ -590,7 +595,7 @@
 
         <div class="price">
           <div class="row"><span class="won">390,000원</span><span class="per">/ 월 · VAT 별도</span></div>
-          <div class="sub"><b>세팅비 1,000,000원 (VAT 별도) · 최초 1회</b></div>
+          <div class="sub" data-v="하와이비용"><b>세팅비 1,000,000원 (VAT 별도) · 최초 1회</b></div>
           <div class="sub">가입하는 날 <b>원장님 학원 위치</b>를 기준으로 한 맞춤 세팅으로 시작합니다.</div>
         </div>
       </article>
@@ -615,17 +620,90 @@
 
         <div class="price">
           <div class="row"><span class="won">29,900원</span><span class="per">/ 월 · VAT 별도</span></div>
-          <div class="sub"><b>세팅비 1,000,000원 (VAT 별도) · 최초 1회</b></div>
+          <div class="sub" data-v="유미니비용"><b>세팅비 1,000,000원 (VAT 별도) · 최초 1회</b></div>
           <div class="sub"><b>8월 이후 가입시 월 19,900원(VAT 별도)</b> — 8월 이전 월 14,900원(VAT 별도)</div>
         </div>
       </article>
 
     </div>
 
+    <!-- 다호관 혜택 — 시트에서 '다호관 혜택 있음'일 때만 보인다 -->
+    <div data-sec="다호관" id="dahogwan" style="display:none">
+    <div class="bhead" style="margin-top:44px">
+      <span class="kick">다호관 원장님이라면</span>
+      <h3>관이 늘수록, 관당 월 비용은 가벼워집니다</h3>
+      <p>클럽하와이는 두 번째 관부터 가맹비가 반값 이하로 — 규모가 커질수록 원장님 부담이 줄어드는 구조입니다.</p>
+    </div>
+
+    <div class="multi">
+      <!-- 구간별 단가 -->
+      <div class="tiers">
+        <div class="tier">
+          <div class="rng">1호관 (원 구독료)</div>
+          <div class="amt">390,000<small>원/월</small></div>
+          <div class="vt">VAT 별도</div>
+          <div class="off zero">기준가</div>
+        </div>
+        <div class="tier">
+          <div class="rng">2~5호관 (관당)</div>
+          <div class="amt">195,000<small>원/월</small></div>
+          <div class="vt">VAT 별도</div>
+          <div class="off">원가의 50%</div>
+        </div>
+        <div class="tier">
+          <div class="rng">6~10호관 (관당)</div>
+          <div class="amt">117,000<small>원/월</small></div>
+          <div class="vt">VAT 별도</div>
+          <div class="off">원가의 30%</div>
+        </div>
+      </div>
+      <p class="vatnote" style="margin:-14px 0 22px">위 구간별 단가는 <b>모두 VAT 별도</b>입니다.</p>
+
+      <!-- 관당 평균 월 비용 차트 -->
+      <p class="chart-cap">가맹 관 수별 · 관당 평균 월 구독료 (VAT 별도)</p>
+      <div class="bars">
+        <div class="bar-row">
+          <span class="lb">1관</span>
+          <span class="track"><span class="fill" style="width:100%"></span></span>
+          <span class="val"><b>관당 390,000원</b><small>월 390,000</small></span>
+        </div>
+        <div class="bar-row">
+          <span class="lb">2관</span>
+          <span class="track"><span class="fill" style="width:75%"></span></span>
+          <span class="val"><b>관당 292,500원</b><small>월 585,000</small></span>
+        </div>
+        <div class="bar-row">
+          <span class="lb">3관</span>
+          <span class="track"><span class="fill" style="width:66.7%"></span></span>
+          <span class="val"><b>관당 260,000원</b><small>월 780,000</small></span>
+        </div>
+        <div class="bar-row">
+          <span class="lb">5관</span>
+          <span class="track"><span class="fill" style="width:60%"></span></span>
+          <span class="val"><b>관당 234,000원</b><small>월 1,170,000</small></span>
+        </div>
+        <div class="bar-row best">
+          <span class="lb">10관</span>
+          <span class="track"><span class="fill" style="width:45%"></span></span>
+          <span class="val"><b>관당 175,500원</b><small>월 1,755,000</small></span>
+        </div>
+      </div>
+
+      <p class="foot-note">10호관 기준, 관당 월 비용이 <b>39만원 → 17.5만원(55%↓)</b>. 정상가 대비 매달 <b>2,145,000원</b>을 아낍니다. (VAT 별도)</p>
+      <p class="biz">11호관부터는 기업회원 가입으로 별도 안내드립니다.</p>
+    </div>
+    </div>
+
+    <!-- 함께 가맹 특전 — 시트에서 '할인혜택 있음'일 때만 보인다 -->
+    <div class="meaning" data-sec="함께혜택" style="display:none;margin-top:18px;border-style:solid;background:linear-gradient(135deg,#FFF0F6,#FFF7FB)">
+      <h5 data-v="함께혜택제목">함께 가맹 특전</h5>
+      <p data-v="함께혜택"></p>
+    </div>
+
   </section>
 
   <!-- 세팅비 구성 · 개별 단가 -->
-  <section class="block">
+  <section class="block" data-sec="세팅비">
     <div class="bhead">
       <span class="kick">세팅비, 왜 이 금액일까요?</span>
       <h3>세팅비는 가입비가 아니라, 우리 학원 전용 제작비입니다</h3>
@@ -775,18 +853,18 @@
       <span>보이지 않는 3~4주 동안, 원장님 학원 이름이 들어간 문서와 템플릿이 하나씩 만들어지고 있습니다.</span>
     </div>
 
-    <!-- 오늘 한정 혜택 강조(요약) -->
-    <div class="meaning" style="margin-top:20px;border-style:solid;background:linear-gradient(135deg,#FFF0F6,#FFF7FB)">
-      <h5>오늘 설명회 참석 원장님 한정</h5>
-      <p><b>클럽하와이·유미니 각 100만원 → 각 50만원.</b> 두 개를 함께 가맹하시면 세팅비 총 200만원이 <b>총 100만원</b>으로 — <b>100만원(50%)을 덜어드립니다.</b> 이미 클럽하와이 회원이신 원장님이 유미니를 추가로 가맹하실 때도 <b>세팅비 50만원</b>으로 동일하게 적용됩니다. 작업 범위는 그대로 두고 금액만 낮춘 조건이라, 오늘 참석하신 원장님께만 적용됩니다. 세팅비는 최초 1회만 결제됩니다. (VAT 별도)</p>
+    <!-- 할인 혜택 요약 — 시트에서 '할인혜택 있음'일 때만 보인다 -->
+    <div class="meaning" data-sec="할인요약" style="display:none;margin-top:20px;border-style:solid;background:linear-gradient(135deg,#FFF0F6,#FFF7FB)">
+      <h5 data-v="혜택요약제목">상담 가맹비 할인 혜택</h5>
+      <p data-v="혜택요약"></p>
     </div>
   </section>
 
   <!-- 설문 -->
   <div class="narrow">
     <div class="sec-title">
-      <h3>상담 신청</h3>
-      <p>남겨주신 내용은 담당자가 직접 확인하고, 영업일 기준 3일 이내로 안내드릴게요.</p>
+      <h3 data-v="신청제목">상담 신청</h3>
+      <p data-v="신청설명">남겨주신 내용은 담당자가 직접 확인하고, 영업일 기준 3일 이내로 안내드릴게요.</p>
     </div>
 
     <div class="card" id="card">
@@ -889,18 +967,18 @@
       <p>오늘 함께해 주셔서 고맙습니다.<br>영업일 기준 3일 이내로<br>담당자가 연락드릴게요.</p>
       <div class="ch-wrap">
         <span class="lbl">바로 물어보고 싶으시다면</span>
-        <a class="ch" href="http://pf.kakao.com/_xdrlwX/friend" target="_blank" rel="noopener">클럽하와이 CS 채널</a>
-        <a class="ch" href="http://pf.kakao.com/_YHwDn/friend" target="_blank" rel="noopener">유미니 CS 채널</a>
+        <a class="ch" href="https://pf.kakao.com/_xdrlwX/friend" target="_blank" rel="noopener">클럽하와이 CS 채널</a>
+        <a class="ch" href="https://pf.kakao.com/_YHwDn/friend" target="_blank" rel="noopener">유미니 CS 채널</a>
       </div>
     </div>
   </div>
 
   <!-- 카카오 CS 채널 -->
-  <section class="channels narrow">
-    <h3>바로 물어보고 싶다면</h3>
+  <section class="channels narrow" data-sec="문의채널">
+    <h3 data-v="문의제목">바로 물어보고 싶다면</h3>
     <p class="lead">각 서비스 CS 채널을 추가하시면 담당자와 카카오톡으로 바로 이야기 나눌 수 있어요.</p>
     <div class="chan-grid">
-      <a class="chan a" href="http://pf.kakao.com/_xdrlwX/friend" target="_blank" rel="noopener">
+      <a class="chan a" href="https://pf.kakao.com/_xdrlwX/friend" target="_blank" rel="noopener">
         <span class="k-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#3C1E1E" d="M12 3C6.9 3 2.8 6.3 2.8 10.3c0 2.6 1.7 4.8 4.3 6.1-.2.7-.7 2.5-.8 2.9-.1.5.2.5.4.4.2-.1 2.6-1.8 3.7-2.5.5.1 1.1.1 1.6.1 5.1 0 9.2-3.3 9.2-7.3S17.1 3 12 3z"/></svg>
         </span>
@@ -910,7 +988,7 @@
         </span>
         <span class="arw" aria-hidden="true">→</span>
       </a>
-      <a class="chan b" href="http://pf.kakao.com/_YHwDn/friend" target="_blank" rel="noopener">
+      <a class="chan b" href="https://pf.kakao.com/_YHwDn/friend" target="_blank" rel="noopener">
         <span class="k-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#3C1E1E" d="M12 3C6.9 3 2.8 6.3 2.8 10.3c0 2.6 1.7 4.8 4.3 6.1-.2.7-.7 2.5-.8 2.9-.1.5.2.5.4.4.2-.1 2.6-1.8 3.7-2.5.5.1 1.1.1 1.6.1 5.1 0 9.2-3.3 9.2-7.3S17.1 3 12 3z"/></svg>
         </span>
@@ -931,10 +1009,78 @@
    ───────────────────────────────────────────── */
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbzJlJFgygkm6rGg9AaG33aL_0ZvFbF2iR7sQCW5xCVRBEU1kJpr_4LqjqZaHtBt8lrONg/exec";
 
+/* ═════════════════════════════════════════════════════════════════
+   회차마다 다르게 보여줄 내용   (링크 뒤 ?s=코드 로 구분)
+   ─────────────────────────────────────────────────────────────────
+   · 기본은 아래 페이지에 적힌 그대로입니다. 여기에 적은 회차만 달라집니다.
+   · 적지 않은 항목은 기본을 그대로 따라갑니다 —
+     기본 문구를 고치면, 따로 적지 않은 회차 링크에도 함께 반영됩니다.
+   · 신청 명단은 지금처럼 한 시트에 모이고 '설명회코드'로 구분됩니다.
+
+   ▸ 문구 바꾸기 — 바꿀 자리 이름을 쓰고 새 내용을 적습니다(<b>·<br> 같은 태그 사용 가능)
+       윗줄 · 제목 · 설명 · 혜택제목 · 혜택요약제목 · 신청제목 · 신청설명 · 문의제목
+   ▸ 통째로 감추기 — 감출것: ['혜택'] 처럼 섹션 이름을 적습니다
+       인사 · 혜택 · 서비스안내 · 세팅비 · 문의채널
+   ▸ 새로 넣기 — 추가: [{ 뒤에:'혜택', 제목:'...', 내용:'...' }]
+       '뒤에' 대신 '앞에'도 됩니다. 내용에는 HTML을 그대로 쓸 수 있습니다.
+
+   예시 (쓰실 때 앞의 // 를 지우세요)
+   const 회차별 = {
+     '0902': {
+       제목: '○○ 세미나, 잘 들으셨나요?',
+       혜택제목: '오늘 참석 원장님 한정 · 세팅비 40% 혜택',
+       감출것: ['서비스안내'],
+       추가: [{ 뒤에:'혜택', 제목:'이번 회차 전용 안내',
+                내용:'<p>9월 5일까지 신청하신 분께는 브랜드북을 먼저 만들어 드립니다.</p>' }],
+     },
+   };
+   ═════════════════════════════════════════════════════════════════ */
+const 회차별 = {
+
+  /* ── 링크마다 문구·섹션을 손으로 바꾸고 싶을 때만 씁니다.
+     (할인 금액·다호관 금액은 여기가 아니라 스프레드시트에서 받습니다)
+  '0905': {
+    제목: '○○ 설명회, 잘 들으셨나요?',
+    추가: [{ 뒤에: '혜택', 제목: '따로 안내드릴 내용', 내용: '<p>…</p>' }],
+  },
+  */
+};
+
+/* 회차 내용 적용 — 위 표에 적힌 것만 바꾼다(적지 않은 것은 기본 그대로) */
+function applySession(code){
+  const o = 회차별[code];
+  if (!o) return;
+  const sec = name => document.querySelector('[data-sec="' + name + '"]');
+  Object.keys(o).forEach(function(k){
+    if (k === '감출것' || k === '추가') return;
+    document.querySelectorAll('[data-v="' + k + '"]').forEach(function(el){ el.innerHTML = o[k]; });
+  });
+  (o.감출것 || []).forEach(function(name){
+    const el = sec(name);
+    if (el) el.style.display = 'none';
+  });
+  (o.추가 || []).forEach(function(add){
+    const target = sec(add.뒤에 || add.앞에);
+    if (!target) return;
+    const box = document.createElement('section');
+    box.className = 'block';
+    box.setAttribute('data-sec', add.이름 || '추가');
+    box.innerHTML =
+      '<div class="narrow">' +
+        (add.제목 ? '<div class="sec-title"><h3>' + add.제목 + '</h3>' +
+                    (add.부제 ? '<p>' + add.부제 + '</p>' : '') + '</div>' : '') +
+        (add.내용 || '') +
+      '</div>';
+    if (add.앞에) target.parentNode.insertBefore(box, target);
+    else target.parentNode.insertBefore(box, target.nextSibling);
+  });
+}
+
 /* ── 설명회 회차 코드 캡처 (?s=코드) ─ ?s= 로 들어오면 그 코드로 갱신 ──
    · 주소 뒤에 아무것도 없이 들어오면  → 코드 없음(빈값) = 0723(첫 설명회)
-   · 주소 뒤에 ?s=0812 을 붙여 들어오면 → 코드 '0812'
-   · 설명회마다 ?s= 뒤 날짜만 바꿔 배포(0724, 0727 …)하면 회차가 구분됩니다.   */
+   · 주소 뒤에 ?s=0811 을 붙여 들어오면 → 코드 '0811'
+   · 설명회마다 ?s= 뒤 날짜만 바꿔 배포(0811, 0818 …)하면 회차가 구분됩니다.
+   · 현재 배포 링크: https://clubhawaii.github.io/submit/?s=0811   */
 function getSession(){
   try {
     const s = new URLSearchParams(location.search).get('s');
@@ -942,6 +1088,92 @@ function getSession(){
     return localStorage.getItem('hw_session') || '';
   } catch(_) { return ''; }
 }
+
+try { applySession(getSession()); } catch(_) {}
+
+/* ═════════════════════════════════════════════════════════════════
+   회차별 혜택 — 구글 스프레드시트('회차설정' 시트)에서 받아 옵니다.
+   · 시트에서 '할인혜택 있음'을 고르고 금액을 적으면 비용란이 할인가로 바뀝니다.
+   · '다호관 혜택 있음'을 고르고 세 구간 금액을 적으면 다호관 섹션이 붙습니다.
+   · 아무것도 적지 않은 회차(그리고 이미 나간 옛 링크)는 지금 화면 그대로입니다.
+   · 시트만 고치면 이미 배포된 링크에도 곧바로 반영됩니다(페이지를 다시 열면 적용).
+   ═════════════════════════════════════════════════════════════════ */
+const 원 = n => Number(n || 0).toLocaleString('ko-KR');
+const 만 = n => { const v = Number(n || 0) / 10000; return (Math.floor(v * 10) / 10) + '만'; };   // 17.55만 → 17.5만(올려 적지 않는다)
+
+function showSec(name, on){
+  const el = document.querySelector('[data-sec="' + name + '"]');
+  if (el) el.style.display = on ? '' : 'none';
+}
+function setText(name, html){
+  document.querySelectorAll('[data-v="' + name + '"]').forEach(el => { el.innerHTML = html; });
+}
+
+/* 가맹비 할인 — 비용란 두 줄 + 함께 가맹 특전 + 요약 */
+function applyDiscount(c){
+  const 이름 = c.혜택이름 || '가맹비 할인 혜택';
+  // 할인가를 안 적었거나 정가와 같으면(그 서비스는 할인 없음) 원래 문구 그대로 둔다
+  const 비용 = (정가, 할인) => (!(할인 > 0) || Number(할인) >= Number(정가))
+    ? '<b>세팅비 ' + 원(정가) + '원 (VAT 별도) · 최초 1회</b>'
+    : '<b>가맹비 <s>' + 원(정가) + '원</s> → ' + 원(할인) + '원 (VAT 별도) · 최초 1회</b>';
+  if (c.정가하와이 > 0) setText('하와이비용', 비용(c.정가하와이, c.할인하와이));
+  if (c.정가유미니 > 0) setText('유미니비용', 비용(c.정가유미니, c.할인유미니));
+  const 함께할인 = Number(c.정가함께) > 0 && Number(c.할인함께) > 0 && Number(c.할인함께) < Number(c.정가함께);
+  if (!함께할인) { showSec('함께혜택', false); showSec('할인요약', false); return; }
+  setText('함께혜택제목', 이름);
+  setText('함께혜택', '클럽하와이 + 유미니를 <b>함께 가맹</b>하시면 가맹비 총 <s>' + 원(c.정가함께) + '원</s>이 ' +
+                     '<b>총 ' + 원(c.할인함께) + '원</b>으로 — <b>' + 원(Number(c.정가함께) - Number(c.할인함께)) + '원</b>을 덜어드립니다. (VAT 별도)');
+  showSec('함께혜택', true);
+  setText('혜택요약제목', 이름);
+  setText('혜택요약', '<b>클럽하와이 ' + 만(c.정가하와이) + '원 → ' + 만(c.할인하와이) + '원 · 유미니 ' +
+                     만(c.정가유미니) + '원 → ' + 만(c.할인유미니) + '원.</b> 두 가지를 함께 가맹하시면 ' +
+                     '가맹비 총 ' + 만(c.정가함께) + '원이 <b>총 ' + 만(c.할인함께) + '원</b>이 됩니다. (VAT 별도)');
+  showSec('할인요약', true);
+}
+
+/* 다호관 혜택 — 세 구간 금액만 받아 표·막대그래프·문구를 다시 그린다(디자인은 그대로) */
+function applyDahogwan(p1, p2, p3){
+  const box = document.getElementById('dahogwan');
+  if (!box || !(p1 > 0)) return;
+  const tiers = box.querySelectorAll('.tier');
+  const 값 = [p1, p2, p3];
+  tiers.forEach((t, i) => {
+    const amt = t.querySelector('.amt');
+    if (amt) amt.innerHTML = 원(값[i]) + '<small>원/월</small>';
+    const off = t.querySelector('.off');
+    if (off && i > 0) off.textContent = '원가의 ' + Math.round((값[i] / p1) * 100) + '%';
+  });
+  const 관당 = n => (p1 + p2 * Math.min(Math.max(n - 1, 0), 4) + p3 * Math.max(n - 5, 0)) / n;
+  box.querySelectorAll('.bar-row').forEach(row => {
+    const n = parseInt((row.querySelector('.lb') || {}).textContent, 10);
+    if (!n) return;
+    const avg = Math.round(관당(n));
+    const fill = row.querySelector('.fill');
+    if (fill) fill.style.width = ((avg / p1) * 100).toFixed(1) + '%';
+    const val = row.querySelector('.val');
+    if (val) val.innerHTML = '<b>관당 ' + 원(avg) + '원</b><small>월 ' + 원(avg * n) + '</small>';
+  });
+  const avg10 = Math.round(관당(10));
+  const note = box.querySelector('.foot-note');
+  if (note) note.innerHTML = '10호관 기준, 관당 월 비용이 <b>' + 만(p1) + '원 → ' + 만(avg10) + '원(' +
+    Math.round((1 - avg10 / p1) * 100) + '%↓)</b>. 정상가 대비 매달 <b>' + 원(p1 * 10 - avg10 * 10) + '원</b>을 아낍니다. (VAT 별도)';
+  showSec('다호관', true);
+}
+
+function applyConfig(c){
+  if (!c || c.찾음 === false) return;              // 시트에 그 회차 줄이 없으면 지금 화면 그대로
+  if (String(c.할인혜택 || '').indexOf('있') === 0) applyDiscount(c);
+  if (String(c.다호관혜택 || '').indexOf('있') === 0) applyDahogwan(Number(c.다호관1호관), Number(c.다호관2_5호관), Number(c.다호관6_10호관));
+}
+
+(function loadConfig(){
+  try {
+    const s = getSession();
+    if (!s) return;                                 // 회차 코드가 없는 접속은 기본 화면
+    fetch(SHEET_URL + '?type=config&s=' + encodeURIComponent(s))
+      .then(r => r.json()).then(applyConfig).catch(function(){ /* 못 받아오면 기본 화면 그대로 */ });
+  } catch(_) {}
+})();
 
 /* ── 접속 로그 (이탈률 집계용) ─ 한 방문(탭 세션)당 1회 기록 ── */
 (function logVisit(){
