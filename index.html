@@ -48,7 +48,7 @@
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:960px;margin:0 auto;padding:0 20px 80px}
-  .narrow{max-width:600px;margin:0 auto}
+  .narrow{max-width:none;margin:0 auto}
 
   /* ── 헤더 ───────────────────────── */
   .hero{
@@ -83,16 +83,16 @@
   .promo .deal .who{font-size:13.5px;font-weight:600;opacity:0.92;margin-bottom:5px}
   .promo .deal .price{font-size:20px;font-weight:800;letter-spacing:-0.5px;word-break:keep-all}
   .promo .deal .price s{font-size:14px;font-weight:500;opacity:0.65;margin-right:7px;white-space:nowrap}
-  .promo .note{font-size:12.5px;opacity:0.85;margin:16px 0 0;letter-spacing:-0.2px}
+  .promo .note{font-size:12.5px;opacity:0.85;margin:8px 0 0;letter-spacing:-0.2px;text-align:left}
   .promo .addon{
     margin:16px 0 0;padding-top:14px;border-top:1px solid rgba(255,255,255,0.3);
-    font-size:14px;font-weight:700;letter-spacing:-0.3px;word-break:keep-all;
+    font-size:14px;font-weight:700;letter-spacing:-0.3px;word-break:keep-all;text-align:left;
   }
   .promo .addon s{font-weight:500;opacity:0.7;margin-right:6px}
   .promo .valid{margin:10px 0 0;font-size:12.5px;font-weight:700;opacity:0.95;letter-spacing:-0.2px}
 
   .promo .saving{
-    margin:18px auto 0;max-width:440px;
+    margin:18px 0 0;max-width:none;
     background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.34);
     border-radius:var(--radius);padding:13px 16px;
   }
@@ -111,7 +111,9 @@
   }
 
   /* ── 브랜드 2단 ─────────────────── */
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:44px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:0}
+  /* 이야기가 한 단락 끝났음을 알리는 굵은 선 */
+  .endline{border:0;border-top:3px solid var(--ink);opacity:0.12;margin:40px 0 44px}
   .brand{
     background:transparent;border:0;border-top:3px solid var(--line);border-radius:0;
     padding:20px 0 0;display:flex;flex-direction:column;
@@ -402,6 +404,8 @@
   .refund div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:12.5px;letter-spacing:-0.3px;line-height:1.55;word-break:keep-all}
   .refund div .t{display:block;font-weight:800;color:var(--ink);margin-bottom:3px;font-size:13px}
 
+  /* 넓은 화면에서는 한 줄로 흐르게(좁은 화면에서는 그대로 접힌다) */
+  .oneline{white-space:nowrap}
   .vatnote{font-size:12px;color:var(--ink-light);text-align:center;letter-spacing:-0.3px;margin:2px 0 0;word-break:keep-all}
   .vatnote b{color:var(--ink-mid);font-weight:700}
 
@@ -561,6 +565,9 @@
 
   @media (max-width:760px){
     .cols{grid-template-columns:1fr;gap:16px}
+    .oneline{white-space:normal}
+    .narrow{max-width:600px}
+    .endline{margin:28px 0 30px}
     .roles{grid-template-columns:1fr}
     .setup-cols{grid-template-columns:1fr}
   }
@@ -600,7 +607,6 @@
     <div class="saving" data-v="배너절감"></div>
     <p class="addon" data-v="배너추가" data-sec="추가가맹줄" style="display:none"></p>
     <p class="note" data-v="배너안내">가맹비는 최초 1회만 결제됩니다. (VAT 별도)</p>
-    <p class="valid" data-v="배너기한" data-sec="기한줄" style="display:none"></p>
   </section>
 
   <!-- 서비스 안내 (이용가능서비스 · 비용) -->
@@ -657,6 +663,8 @@
       </article>
 
     </div>
+
+    <hr class="endline">
 
     <!-- 다호관 혜택 — 시트에서 '다호관 혜택 있음'일 때만 보인다 -->
     <div data-sec="다호관" id="dahogwan" style="display:none">
@@ -732,7 +740,7 @@
     <div class="bhead">
       <span class="kick">세팅비, 왜 이 금액일까요?</span>
       <h3>세팅비는 가입비가 아니라, 우리 학원 전용 제작비입니다</h3>
-      <p>브랜드북·미니 시스템·채널 세팅·데이터 이관·교육까지 전부 우리 학원 전용으로 만들어 드리는 산출물의 합입니다.</p>
+      <p class="oneline">브랜드북·미니 시스템·채널 세팅·데이터 이관·교육까지 전부 우리 학원 전용으로 만들어 드리는 산출물의 합입니다.</p>
     </div>
 
     <!-- 세팅비 개별 단가 2단 -->
@@ -771,7 +779,7 @@
         </div>
       </div>
     </div>
-    <p class="vatnote">※ 일반 대행 시세는 동일 작업을 외부 대행사에 개별 의뢰할 경우의 통상 견적 범위이며, 업체·조건에 따라 달라집니다.<br>클럽하와이·유미니 <b>세팅비는 모두 VAT 별도</b>이며, 최초 1회만 결제됩니다.</p>
+    <p class="vatnote">※ 일반 대행 시세는 동일 작업을 외부 대행사에 개별 의뢰할 경우의 통상 견적 범위이며, 업체·조건에 따라 달라집니다. 클럽하와이·유미니 <b>세팅비는 모두 VAT 별도</b>이며, 최초 1회만 결제됩니다.</p>
 
     <!-- 세팅 실작업량 -->
     <div class="effort">
@@ -879,6 +887,8 @@
     </div>
 
   </section>
+
+  <hr class="endline">
 
   <!-- 설문 -->
   <div class="narrow">
@@ -1204,8 +1214,8 @@ function applyValid(c){
   const d = String(c.혜택유효기한 || '').slice(0, 10);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
   const p = d.split('-');
-  setText('배너기한', '위 금액은 ' + Number(p[1]) + '월 ' + Number(p[2]) + '일까지 유효합니다.');
-  showSec('기한줄', true);
+  setText('배너안내', '가맹비는 최초 1회만 결제됩니다. (VAT 별도) · <b>위 금액은 ' +
+    Number(p[1]) + '월 ' + Number(p[2]) + '일까지 유효합니다.</b>');
 }
 
 /* 맨 위 강조 배너 — 할인이 있는 항목만 카드로 만들고, 아끼는 금액을 크게 보여 준다 */
