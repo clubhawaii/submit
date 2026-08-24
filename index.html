@@ -218,31 +218,24 @@
   .agree:hover .dot{border-color:#F3C3D9}
 
   /* ── 1~5 척도 ───────────────────── */
-  .scale{display:flex;gap:14px;align-items:center;padding:4px 2px}
-  .scale label{
-    flex:0 0 auto;position:relative;text-align:center;cursor:pointer;
-    border:0;padding:0;
+  /* 다섯 단계를 선으로 이어 하나의 눈금처럼 보이게 한다 */
+  .scale{position:relative;display:flex;justify-content:space-between;align-items:center;padding:4px 0 2px}
+  .scale::before{
+    content:'';position:absolute;left:20px;right:20px;top:50%;height:2px;
+    background:var(--line);transform:translateY(-50%);z-index:0;
   }
+  .scale label{position:relative;z-index:1;cursor:pointer;line-height:0}
   .scale input{position:absolute;opacity:0;width:0;height:0}
   .scale .num{
-    display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
-    border:2px solid var(--line);background:#fff;
-    font-size:17px;font-weight:800;letter-spacing:-0.5px;color:var(--ink-light);
-    transition:border-color .15s,background .15s,color .15s,transform .1s;
+    display:grid;place-items:center;width:40px;height:40px;
+    border-radius:50%;border:2px solid var(--line);background:#fff;
+    font-size:16px;font-weight:800;color:var(--ink-light);line-height:1;
+    transition:border-color .15s,background .15s,color .15s;
   }
   .scale label:hover .num{border-color:var(--pink);color:var(--pink)}
-  .scale label:has(input:checked) .num{
-    border-color:var(--pink);background:var(--pink);color:#fff;transform:scale(1.06);
-  }
-  /* 고른 것보다 왼쪽 숫자들도 옅게 채워 어디까지 골랐는지 한눈에 */
-  .scale:has(label:nth-child(2) input:checked) label:nth-child(1) .num,
-  .scale:has(label:nth-child(3) input:checked) label:nth-child(-n+2) .num,
-  .scale:has(label:nth-child(4) input:checked) label:nth-child(-n+3) .num,
-  .scale:has(label:nth-child(5) input:checked) label:nth-child(-n+4) .num{
-    border-color:var(--pink);color:var(--pink);background:var(--pink-soft);
-  }
+  .scale label:has(input:checked) .num{border-color:var(--pink);background:var(--pink);color:#fff}
   .scale label:has(input:focus-visible) .num{box-shadow:0 0 0 3px rgba(255,32,125,0.20)}
-  .scale-legend{display:flex;justify-content:space-between;margin-top:8px;font-size:12.5px;color:var(--ink-light);letter-spacing:-0.2px}
+  .scale-legend{display:flex;justify-content:space-between;margin-top:9px;font-size:12.5px;color:var(--ink-light);letter-spacing:-0.2px}
 
   /* ── 동의 / 버튼 ────────────────── */
   .agree{display:flex;align-items:flex-start;gap:12px;margin:30px 0 20px;padding-top:24px;border-top:1px solid var(--line);cursor:pointer}
@@ -605,8 +598,8 @@
     .promo .saving .big{font-size:23px}
     .card,.brand{padding:24px 20px;border-radius:10px}
     .opts.row .opt{flex:1 1 100%}
-    .scale{gap:10px}
-    .scale .num{width:42px;height:42px;font-size:16px}
+    .scale::before{left:18px;right:18px}
+    .scale .num{width:36px;height:36px;font-size:15px}
     .chan-grid{grid-template-columns:1fr}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -968,12 +961,12 @@
             <label><input type="radio" name="설명회 만족도" value="4"><span class="num">4</span></label>
             <label><input type="radio" name="설명회 만족도" value="5"><span class="num">5</span></label>
           </div>
-          <div class="scale-legend"><span>1 · 조금 아쉬웠어요</span><span>5 · 기대 이상이었어요</span></div>
+          <div class="scale-legend"><span>아쉬웠어요</span><span>아주 좋았어요</span></div>
         </div>
 
         <div class="field">
           <label class="q">어떤 부분이 제일 궁금하세요?</label>
-          <span class="hint">여러 개 골라도 괜찮아요</span>
+          <span class="hint">해당되는 것을 모두 골라 주세요</span>
           <div class="opts">
             <label class="opt"><input type="checkbox" name="관심 분야" value="학생 진단·관리"><span class="dot sq"></span>학생 진단·관리</label>
             <label class="opt"><input type="checkbox" name="관심 분야" value="설명회·상담 전환"><span class="dot sq"></span>설명회·상담 전환</label>
