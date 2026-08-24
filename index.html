@@ -84,6 +84,12 @@
   .promo .deal .price{font-size:20px;font-weight:800;letter-spacing:-0.5px;word-break:keep-all}
   .promo .deal .price s{font-size:14px;font-weight:500;opacity:0.65;margin-right:7px;white-space:nowrap}
   .promo .note{font-size:12.5px;opacity:0.85;margin:16px 0 0;letter-spacing:-0.2px}
+  .promo .addon{
+    margin:16px 0 0;padding-top:14px;border-top:1px solid rgba(255,255,255,0.3);
+    font-size:14px;font-weight:700;letter-spacing:-0.3px;word-break:keep-all;
+  }
+  .promo .addon s{font-weight:500;opacity:0.7;margin-right:6px}
+  .promo .valid{margin:10px 0 0;font-size:12.5px;font-weight:700;opacity:0.95;letter-spacing:-0.2px}
 
   .promo .saving{
     margin:18px auto 0;max-width:440px;
@@ -592,7 +598,9 @@
     <h2 data-v="배너제목"></h2>
     <div class="deals" data-v="배너카드"></div>
     <div class="saving" data-v="배너절감"></div>
+    <p class="addon" data-v="배너추가" data-sec="추가가맹줄" style="display:none"></p>
     <p class="note" data-v="배너안내">가맹비는 최초 1회만 결제됩니다. (VAT 별도)</p>
+    <p class="valid" data-v="배너기한" data-sec="기한줄" style="display:none"></p>
   </section>
 
   <!-- 서비스 안내 (이용가능서비스 · 비용) -->
@@ -645,7 +653,6 @@
         <div class="price">
           <div class="row" data-v="유미니월요금"><span class="was">29,900원</span><span class="won">14,900원</span><span class="per">/ 월 · VAT 별도</span></div>
           <div class="sub" data-v="유미니비용"><b>세팅비 1,000,000원 (VAT 별도) · 최초 1회</b></div>
-          <div class="sub" data-v="유미니추가" data-sec="추가가맹" style="display:none"></div>
         </div>
       </article>
 
@@ -1181,21 +1188,24 @@ function applyDahogwan(p1, p2, p3){
   showSec('다호관', true);
 }
 
-/* 기존 클럽하와이 회원이 유미니를 추가로 가맹할 때 — 유미니 카드 밑 한 줄 */
+/* 기존 클럽하와이 회원이 유미니를 추가로 가맹할 때 — 배너 아래 한 줄 */
 function applyAddon(c){
   const 정가 = Number(c.추가가맹정가 || 0), 할인 = Number(c.추가가맹할인가 || 0);
   if (!(정가 > 0) && !(할인 > 0)) return;
   const 금액 = (할인 > 0 && 할인 < 정가)
-    ? '<s>' + 원(정가) + '원</s> → ' + 원(할인) + '원'
+    ? '<s>' + 원(정가) + '원</s>' + 원(할인) + '원'
     : 원(할인 > 0 ? 할인 : 정가) + '원';
-  let 기한 = '';
-  const d = String(c.추가가맹기한 || '').slice(0, 10);
-  if (/^\d{4}-\d{2}-\d{2}$/.test(d)) {
-    const [, m, day] = d.split('-');
-    기한 = ' · <b>' + Number(m) + '월 ' + Number(day) + '일까지 가입 시</b>';
-  }
-  setText('유미니추가', '<b>이미 클럽하와이 회원이시면 유미니 추가 가맹 ' + 금액 + ' (VAT 별도)</b>' + 기한);
-  showSec('추가가맹', true);
+  setText('배너추가', '이미 클럽하와이 회원이시면 유미니 추가 가맹 ' + 금액 + ' (VAT 별도)');
+  showSec('추가가맹줄', true);
+}
+
+/* 이 회차 혜택이 언제까지인지 — 배너 맨 아래 한 줄 */
+function applyValid(c){
+  const d = String(c.혜택유효기한 || '').slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
+  const p = d.split('-');
+  setText('배너기한', '위 금액은 ' + Number(p[1]) + '월 ' + Number(p[2]) + '일까지 유효합니다.');
+  showSec('기한줄', true);
 }
 
 /* 맨 위 강조 배너 — 할인이 있는 항목만 카드로 만들고, 아끼는 금액을 크게 보여 준다 */
@@ -1209,20 +1219,6 @@ function buildBanner(c){
     카드.push('<div class="deal' + (i === 2 ? ' best' : '') + '">' +
       '<div class="who">' + 이름[i] + '</div>' +
       '<div class="price"><s>' + 원(정[i]) + '원</s>' + 원(할[i]) + '원<i>VAT 별도</i></div>' +
-      '</div>');
-  }
-  // 기존 클럽하와이 회원의 유미니 추가 가맹도 혜택이면 함께 세운다
-  const 추정 = Number(c.추가가맹정가 || 0), 추할 = Number(c.추가가맹할인가 || 0);
-  if (String(c.추가가맹혜택 || '').indexOf('있') === 0 && 추할 > 0) {
-    const d = String(c.추가가맹기한 || '').slice(0, 10);
-    let 기한 = '';
-    if (/^\d{4}-\d{2}-\d{2}$/.test(d)) {
-      const p = d.split('-');
-      기한 = '<span class="until">' + Number(p[1]) + '월 ' + Number(p[2]) + '일까지 가입 시</span>';
-    }
-    카드.push('<div class="deal">' +
-      '<div class="who">이미 클럽하와이 회원 · 유미니 추가</div>' +
-      '<div class="price">' + (추정 > 추할 ? '<s>' + 원(추정) + '원</s>' : '') + 원(추할) + '원<i>VAT 별도</i>' + 기한 + '</div>' +
       '</div>');
   }
   if (!카드.length) return false;
@@ -1252,6 +1248,7 @@ function applyConfig(c){
   if (String(c.할인혜택 || '').indexOf('있') === 0) { applyDiscount(c); buildBanner(c); }
   if (String(c.다호관혜택 || '').indexOf('있') === 0) applyDahogwan(Number(c.다호관1호관), Number(c.다호관2_5호관), Number(c.다호관6_10호관));
   if (String(c.추가가맹혜택 || '').indexOf('있') === 0) applyAddon(c);
+  applyValid(c);
 }
 
 (function loadConfig(){
