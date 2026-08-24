@@ -48,7 +48,7 @@
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:960px;margin:0 auto;padding:0 20px 80px}
-  .narrow{max-width:none;margin:0 auto}
+  .narrow{max-width:600px;margin:0 auto}
 
   /* ── 헤더 ───────────────────────── */
   .hero{
@@ -196,11 +196,6 @@
     transition:color .15s;
   }
   .opts.row .opt{flex:1 1 calc(50% - 5px);min-width:0}
-  .opts.row.three .opt{flex:1 1 calc(33.333% - 8px)}
-  /* 여러 칸을 한 줄에 놓는 자리 */
-  .fieldrow{display:grid;gap:16px}
-  .fieldrow.three{grid-template-columns:repeat(3,1fr)}
-  .fieldrow.two{grid-template-columns:repeat(2,1fr)}
   .etcbox{margin-top:10px}
   .opt input{position:absolute;opacity:0;width:0;height:0}
   .opt .tail{margin-left:auto;font-size:13px;font-weight:700;color:var(--pink);white-space:nowrap}
@@ -223,17 +218,30 @@
   .agree:hover .dot{border-color:#F3C3D9}
 
   /* ── 1~5 척도 ───────────────────── */
-  .scale{display:flex;gap:8px}
+  .scale{display:flex;gap:14px;align-items:center;padding:4px 2px}
   .scale label{
-    flex:1;position:relative;text-align:center;cursor:pointer;
-    border:1px solid var(--line);border-radius:12px;padding:14px 4px 12px;
-    transition:border-color .15s,background .15s;
+    flex:0 0 auto;position:relative;text-align:center;cursor:pointer;
+    border:0;padding:0;
   }
   .scale input{position:absolute;opacity:0;width:0;height:0}
-  .scale .num{display:block;font-size:18px;font-weight:800;letter-spacing:-0.5px;color:var(--ink-mid)}
-  .scale label:hover{border-color:#F3C3D9}
-  .scale label:has(input:checked){border-color:var(--pink);background:var(--pink-soft)}
-  .scale label:has(input:checked) .num{color:var(--pink)}
+  .scale .num{
+    display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+    border:2px solid var(--line);background:#fff;
+    font-size:17px;font-weight:800;letter-spacing:-0.5px;color:var(--ink-light);
+    transition:border-color .15s,background .15s,color .15s,transform .1s;
+  }
+  .scale label:hover .num{border-color:var(--pink);color:var(--pink)}
+  .scale label:has(input:checked) .num{
+    border-color:var(--pink);background:var(--pink);color:#fff;transform:scale(1.06);
+  }
+  /* 고른 것보다 왼쪽 숫자들도 옅게 채워 어디까지 골랐는지 한눈에 */
+  .scale:has(label:nth-child(2) input:checked) label:nth-child(1) .num,
+  .scale:has(label:nth-child(3) input:checked) label:nth-child(-n+2) .num,
+  .scale:has(label:nth-child(4) input:checked) label:nth-child(-n+3) .num,
+  .scale:has(label:nth-child(5) input:checked) label:nth-child(-n+4) .num{
+    border-color:var(--pink);color:var(--pink);background:var(--pink-soft);
+  }
+  .scale label:has(input:focus-visible) .num{box-shadow:0 0 0 3px rgba(255,32,125,0.20)}
   .scale-legend{display:flex;justify-content:space-between;margin-top:8px;font-size:12.5px;color:var(--ink-light);letter-spacing:-0.2px}
 
   /* ── 동의 / 버튼 ────────────────── */
@@ -582,7 +590,6 @@
     .setup-cols{margin-bottom:28px}
     .promo{margin:8px 0 38px}
     .oneline{white-space:normal}
-    .narrow{max-width:600px}
     .endline{margin:28px 0 30px}
     .roles{grid-template-columns:1fr}
     .setup-cols{grid-template-columns:1fr}
@@ -597,12 +604,9 @@
     .promo h2{font-size:18px}
     .promo .saving .big{font-size:23px}
     .card,.brand{padding:24px 20px;border-radius:10px}
-    .opts.row .opt,
-    .opts.row.three .opt{flex:1 1 100%}
-    .fieldrow.three,
-    .fieldrow.two{grid-template-columns:1fr;gap:0}
-    .scale{gap:5px}
-    .scale label{padding:12px 2px 10px}
+    .opts.row .opt{flex:1 1 100%}
+    .scale{gap:10px}
+    .scale .num{width:42px;height:42px;font-size:16px}
     .chan-grid{grid-template-columns:1fr}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -929,30 +933,29 @@
           </div>
         </div>
 
-        <div class="fieldrow three">
-          <div class="field">
-            <label class="q" for="name">성함 <span class="req">*</span></label>
-            <input type="text" id="name" name="성함" placeholder="원장님 성함" required>
-          </div>
-          <div class="field">
-            <label class="q" for="academy">학원명 <span class="req">*</span></label>
-            <input type="text" id="academy" name="학원명" placeholder="학원 이름" required>
-          </div>
-          <div class="field">
-            <label class="q" for="region">지역 <span class="req">*</span></label>
-            <input type="text" id="region" name="지역" placeholder="예: 서울 강남구" required>
-          </div>
+        <div class="field">
+          <label class="q" for="name">성함 <span class="req">*</span></label>
+          <input type="text" id="name" name="성함" placeholder="원장님 성함" required>
         </div>
 
-        <div class="fieldrow two">
-          <div class="field">
-            <label class="q" for="phone">연락처 <span class="req">*</span></label>
-            <input type="tel" id="phone" name="연락처" placeholder="010-0000-0000" inputmode="numeric" maxlength="13" required>
-          </div>
-          <div class="field">
-            <label class="q" for="time">희망 상담 시간 <span class="req">*</span></label>
-            <input type="text" id="time" name="희망 상담 시간" placeholder="예: 평일 오후 / 화·목 저녁" required>
-          </div>
+        <div class="field">
+          <label class="q" for="academy">학원명 <span class="req">*</span></label>
+          <input type="text" id="academy" name="학원명" placeholder="학원 이름" required>
+        </div>
+
+        <div class="field">
+          <label class="q" for="region">지역 <span class="req">*</span></label>
+          <input type="text" id="region" name="지역" placeholder="예: 서울 강남구" required>
+        </div>
+
+        <div class="field">
+          <label class="q" for="phone">연락처 <span class="req">*</span></label>
+          <input type="tel" id="phone" name="연락처" placeholder="010-0000-0000" inputmode="numeric" maxlength="13" required>
+        </div>
+
+        <div class="field">
+          <label class="q" for="time">희망 상담 시간 <span class="req">*</span></label>
+          <input type="text" id="time" name="희망 상담 시간" placeholder="예: 평일 오후 / 화·목 저녁" required>
         </div>
 
         <div class="field">
@@ -965,13 +968,13 @@
             <label><input type="radio" name="설명회 만족도" value="4"><span class="num">4</span></label>
             <label><input type="radio" name="설명회 만족도" value="5"><span class="num">5</span></label>
           </div>
-          <div class="scale-legend"><span>조금 아쉬웠어요</span><span>기대 이상이었어요</span></div>
+          <div class="scale-legend"><span>1 · 조금 아쉬웠어요</span><span>5 · 기대 이상이었어요</span></div>
         </div>
 
         <div class="field">
           <label class="q">어떤 부분이 제일 궁금하세요?</label>
           <span class="hint">여러 개 골라도 괜찮아요</span>
-          <div class="opts row three">
+          <div class="opts">
             <label class="opt"><input type="checkbox" name="관심 분야" value="학생 진단·관리"><span class="dot sq"></span>학생 진단·관리</label>
             <label class="opt"><input type="checkbox" name="관심 분야" value="설명회·상담 전환"><span class="dot sq"></span>설명회·상담 전환</label>
             <label class="opt"><input type="checkbox" name="관심 분야" value="학원 운영"><span class="dot sq"></span>학원 운영</label>
