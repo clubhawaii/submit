@@ -17,7 +17,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/png">
-<meta property="og:image:alt" content="클럽하와이 · 유미니 가입 상담 신청 — 설명회 참석 원장님 한정 세팅비 50% 혜택">
+<meta property="og:image:alt" content="클럽하와이 · 유미니 가입 상담 신청 · 설명회 참석 원장님 한정 세팅비 50% 혜택">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="클럽하와이 · 유미니 가입 상담 신청">
 <meta name="twitter:description" content="설명회 잘 들으셨나요? 오늘 참석 원장님 한정 세팅비 50% 혜택.">
@@ -38,7 +38,7 @@
     --ink-light:#9E99A8;
     --line:#E9E6EE;
     --bg:#FAF8FB;
-    --radius:14px;
+    --radius:10px;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;padding:0}
@@ -66,9 +66,9 @@
   /* ── 오늘 한정 혜택 ─────────────── */
   .promo{
     background:linear-gradient(135deg,#FF207D 0%,#FF5CA0 100%);
-    border-radius:20px;padding:26px 24px;color:#fff;
+    border-radius:12px;padding:26px 24px;color:#fff;
     margin:8px 0 40px;text-align:center;
-    box-shadow:0 8px 28px rgba(255,32,125,0.20);
+    
   }
   .promo .tag{
     display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:0.2px;
@@ -85,6 +85,20 @@
   .promo .deal .price s{font-size:14px;font-weight:500;opacity:0.65;margin-right:7px;white-space:nowrap}
   .promo .note{font-size:12.5px;opacity:0.85;margin:16px 0 0;letter-spacing:-0.2px}
 
+  .promo .saving{
+    margin:18px auto 0;max-width:440px;
+    background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.34);
+    border-radius:var(--radius);padding:13px 16px;
+  }
+  .promo .saving .lb{display:block;font-size:12.5px;font-weight:600;opacity:0.9;margin-bottom:3px}
+  .promo .saving .big{font-size:27px;font-weight:800;letter-spacing:-1px;line-height:1.15}
+  .promo .saving .big small{font-size:14px;font-weight:700;margin-left:7px;opacity:0.9}
+  .promo .deal.best{background:rgba(255,255,255,0.28);border-color:rgba(255,255,255,0.6)}
+  .promo .deal.best .who{opacity:1;font-weight:800}
+  .promo .deal .until{
+    display:block;font-style:normal;font-size:11.5px;font-weight:700;
+    opacity:0.9;margin-top:5px;letter-spacing:-0.2px;
+  }
   .promo .deal .price i{
     display:block;font-style:normal;font-size:11.5px;font-weight:700;
     opacity:0.78;margin-top:3px;letter-spacing:-0.2px;
@@ -93,12 +107,11 @@
   /* ── 브랜드 2단 ─────────────────── */
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:44px}
   .brand{
-    background:#fff;border:1px solid var(--line);border-radius:20px;
-    padding:28px 24px;display:flex;flex-direction:column;
-    box-shadow:0 4px 24px rgba(43,42,51,0.04);
+    background:transparent;border:0;border-top:3px solid var(--line);border-radius:0;
+    padding:20px 0 0;display:flex;flex-direction:column;
   }
-  .brand.a{border-color:var(--pink-line)}
-  .brand.b{border-color:var(--navy-line)}
+  .brand.a{border-top-color:var(--pink)}
+  .brand.b{border-top-color:var(--navy)}
   .brand .logo{height:34px;width:auto;margin-bottom:16px;align-self:flex-start}
   .brand .logo.b{height:38px}
   .brand .kind{
@@ -142,8 +155,8 @@
 
   /* ── 카드 / 폼 ──────────────────── */
   .card{
-    background:#fff;border:1px solid var(--line);border-radius:20px;
-    padding:32px 26px;box-shadow:0 4px 24px rgba(43,42,51,0.04);
+    background:#fff;border:1px solid var(--line);border-radius:10px;
+    padding:30px 24px;
   }
   .sec-title{text-align:center;margin-bottom:22px}
   .sec-title h3{font-size:22px;font-weight:800;letter-spacing:-0.7px;margin:0 0 8px}
@@ -292,9 +305,9 @@
   .chan .txt b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-0.3px}
   .chan .txt small{display:block;font-size:12.5px;color:var(--ink-light);letter-spacing:-0.2px;margin-top:2px}
   .chan .arw{font-size:15px;color:var(--ink-light);transition:transform .15s,color .15s}
-  .chan.a:hover{border-color:var(--pink-line);box-shadow:0 6px 18px rgba(255,32,125,0.08)}
+  .chan.a:hover{border-color:var(--pink-line)}
   .chan.a:hover .arw{color:var(--pink);transform:translateX(3px)}
-  .chan.b:hover{border-color:var(--navy-line);box-shadow:0 6px 18px rgba(35,43,62,0.08)}
+  .chan.b:hover{border-color:var(--navy-line)}
   .chan.b:hover .arw{color:var(--navy);transform:translateX(3px)}
   .chan:active{transform:scale(0.99)}
   .chan:focus-visible{outline:none;border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,32,125,0.15)}
@@ -311,9 +324,9 @@
 
   /* ── 역할 한 줄 정리 ─────────────── */
   .roles{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:30px}
-  .role{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;word-break:keep-all}
-  .role.a{border-color:var(--pink-line)}
-  .role.b{border-color:var(--navy-line)}
+  .role{background:transparent;border:0;border-left:2px solid var(--line);border-radius:0;padding:2px 0 2px 14px;word-break:keep-all}
+  .role.a{border-left-color:var(--pink)}
+  .role.b{border-left-color:var(--navy)}
   .role .nm{font-size:15px;font-weight:800;letter-spacing:-0.4px;margin-bottom:4px}
   .role.a .nm{color:var(--pink)}
   .role.b .nm{color:var(--navy)}
@@ -322,9 +335,9 @@
 
   /* ── 세팅비 구성 2단 ─────────────── */
   .setup-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
-  .scard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px 22px;box-shadow:0 4px 24px rgba(43,42,51,0.04);display:flex;flex-direction:column}
-  .scard.a{border-color:var(--pink-line)}
-  .scard.b{border-color:var(--navy-line)}
+  .scard{background:transparent;border:0;border-top:3px solid var(--line);border-radius:0;padding:20px 0 0;display:flex;flex-direction:column}
+  .scard.a{border-top-color:var(--pink)}
+  .scard.b{border-top-color:var(--navy)}
   .scard .cap{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
   .scard .cap .nm{font-size:16.5px;font-weight:800;letter-spacing:-0.4px}
   .scard.a .cap .nm{color:var(--pink)}
@@ -354,25 +367,28 @@
     padding-bottom:8px;border-bottom:1px solid var(--line);
   }
   .scard .chd .c2{flex:0 0 84px;text-align:right}
-  .ourfee{
-    margin-top:auto;border-radius:14px;padding:16px 17px;
-    background:var(--bg);border:1px solid var(--line);
+  .price .was{
+    font-size:15px;font-weight:600;color:var(--ink-light);
+    text-decoration:line-through;margin-right:8px;letter-spacing:-0.4px;
   }
-  .scard.a .ourfee{background:#FFF7FB;border-color:var(--pink-line)}
-  .scard.b .ourfee{background:#F6F8FC;border-color:var(--navy-line)}
+
+  /* 세팅비 정가·할인가 — 상자 대신 선 하나와 색으로만 강조한다 */
+  .ourfee{margin-top:auto;padding:15px 2px 2px;border-top:1px solid var(--line)}
+  .scard.a .ourfee{border-top-color:var(--pink-line)}
+  .scard.b .ourfee{border-top-color:var(--navy-line)}
   .ourfee .lb{display:block;font-size:11.5px;font-weight:800;color:var(--ink-light);letter-spacing:-0.3px;margin-bottom:5px}
   .ourfee .amt{font-size:22px;font-weight:800;letter-spacing:-0.8px;line-height:1.15;color:var(--ink)}
   .ourfee .amt small{display:inline-block;font-size:11.5px;font-weight:700;color:var(--ink-light);margin-left:7px;letter-spacing:-0.2px;vertical-align:middle}
+  .ourfee .amt.off{font-size:17px;color:var(--ink-light);text-decoration:line-through;font-weight:600}
   .ourfee .today{
-    margin-top:11px;padding-top:11px;border-top:1px dashed var(--pink-line);
-    font-size:12.5px;color:var(--ink-mid);letter-spacing:-0.3px;
+    margin-top:8px;font-size:12.5px;color:var(--ink-mid);letter-spacing:-0.3px;
     display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;
   }
   .ourfee .today b{font-size:18px;font-weight:800;color:var(--pink);letter-spacing:-0.6px}
   .ourfee .today .vat{font-size:11px;font-weight:700;color:var(--ink-light)}
 
   /* ── 세팅비 = 맞춤 제작 안내 ─────── */
-  .meaning{background:#fff;border:1px dashed var(--pink-line);border-radius:16px;padding:20px 22px}
+  .meaning{background:#fff;border:1px dashed var(--pink-line);border-radius:10px;padding:20px 22px}
   .meaning h5{font-size:14.5px;font-weight:800;letter-spacing:-0.3px;margin:0 0 8px;color:var(--pink-deep)}
   .meaning p{font-size:13.5px;color:var(--ink-mid);margin:0;letter-spacing:-0.3px;line-height:1.7;word-break:keep-all}
   .meaning p b{color:var(--ink)}
@@ -385,9 +401,9 @@
 
 
   /* ── 다호관 월 비용 ───────────────── */
-  .multi{background:linear-gradient(180deg,#FFF3F8 0%,#fff 60%);border:1px solid var(--pink-line);border-radius:22px;padding:30px 26px;box-shadow:0 8px 28px rgba(255,32,125,0.07)}
+  .multi{background:transparent;border:0;border-top:1px solid var(--pink-line);border-radius:0;padding:24px 0 0;}
   .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
-  .tier{background:#fff;border:1px solid var(--pink-line);border-radius:16px;padding:16px 12px;text-align:center}
+  .tier{background:transparent;border:0;border-left:1px solid var(--pink-line);border-radius:0;padding:2px 0 2px 14px;text-align:left}
   .tier .rng{font-size:12px;font-weight:700;color:var(--pink-deep);margin-bottom:7px;letter-spacing:-0.3px;word-break:keep-all}
   .tier .amt{font-size:21px;font-weight:800;color:var(--ink);letter-spacing:-0.7px;line-height:1.1}
   .tier .amt small{font-size:12px;font-weight:600;color:var(--ink-mid)}
@@ -418,8 +434,8 @@
   /* ── 세팅 실작업량 (다크) ─────────── */
   .effort{
     background:linear-gradient(165deg,#232B3E 0%,#303B55 100%);
-    border-radius:22px;padding:32px 28px;color:#fff;margin-top:20px;
-    box-shadow:0 10px 34px rgba(35,43,62,0.18);
+    border-radius:12px;padding:32px 28px;color:#fff;margin-top:20px;
+    
   }
   .effort .ehead{text-align:center;margin-bottom:24px}
   .effort .ehead .kk{
@@ -431,7 +447,7 @@
   .effort .ehead p{font-size:13.5px;color:rgba(255,255,255,0.72);margin:0 auto;max-width:480px;letter-spacing:-0.3px;word-break:keep-all;line-height:1.7}
 
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px}
-  .stat{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);border-radius:16px;padding:16px 10px;text-align:center}
+  .stat{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:16px 10px;text-align:center}
   .stat .n{font-size:25px;font-weight:800;color:#FF7FB4;letter-spacing:-1px;line-height:1.1}
   .stat .n small{font-size:13px;font-weight:700;margin-left:2px}
   .stat .t{font-size:11.5px;color:rgba(255,255,255,0.65);margin-top:6px;letter-spacing:-0.3px;word-break:keep-all;line-height:1.45}
@@ -481,7 +497,7 @@
 
   /* ── 원장님이 하실 일 vs 저희가 하는 일 ── */
   .whodoes{display:grid;grid-template-columns:1fr 1.35fr;gap:14px;margin-top:20px}
-  .wcol{border-radius:18px;padding:22px 20px;word-break:keep-all}
+  .wcol{border-radius:10px;padding:22px 20px;word-break:keep-all}
   .wcol .lb{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:-0.2px;border-radius:999px;padding:4px 11px;margin-bottom:11px}
   .wcol .hd{font-size:18px;font-weight:800;letter-spacing:-0.6px;margin-bottom:9px;line-height:1.35}
   .wcol ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
@@ -498,14 +514,14 @@
   .wcol .cnt{font-size:12px;color:var(--ink-light);margin-top:12px;letter-spacing:-0.3px}
 
   .punch{
-    margin-top:16px;background:var(--navy);color:#fff;border-radius:18px;
+    margin-top:16px;background:var(--navy);color:#fff;border-radius:10px;
     padding:22px 24px;text-align:center;word-break:keep-all;
   }
   .punch b{display:block;font-size:17px;font-weight:800;letter-spacing:-0.6px;line-height:1.5;margin-bottom:7px}
   .punch span{font-size:13.5px;color:rgba(255,255,255,0.7);letter-spacing:-0.3px;line-height:1.7}
 
   /* ── 외주 견적 비교 ───────────────── */
-  .vs{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px 22px;margin-top:20px;box-shadow:0 4px 24px rgba(43,42,51,0.04)}
+  .vs{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:22px 0 0;margin-top:20px;}
   .vs .vh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11.5px;font-weight:800;color:var(--ink-light);letter-spacing:-0.2px;padding-bottom:9px;border-bottom:1px solid var(--line)}
   .vs .vh .c2{flex:0 0 92px;text-align:right}
   .vs .vh .c3{flex:0 0 76px;text-align:right;color:var(--pink)}
@@ -550,7 +566,8 @@
     .hero h1{font-size:24px}
     .promo{padding:22px 18px}
     .promo h2{font-size:18px}
-    .card,.brand{padding:24px 20px;border-radius:16px}
+    .promo .saving .big{font-size:23px}
+    .card,.brand{padding:24px 20px;border-radius:10px}
     .opts.row .opt{flex:1 1 100%}
     .scale{gap:5px}
     .scale label{padding:12px 2px 10px}
@@ -570,6 +587,14 @@
 <div class="wrap">
 
 
+  <!-- 참석 혜택 강조 배너 — 시트에서 '할인혜택 있음'일 때만 보인다 -->
+  <section class="promo" data-sec="혜택배너" style="display:none">
+    <h2 data-v="배너제목"></h2>
+    <div class="deals" data-v="배너카드"></div>
+    <div class="saving" data-v="배너절감"></div>
+    <p class="note" data-v="배너안내">가맹비는 최초 1회만 결제됩니다. (VAT 별도)</p>
+  </section>
+
   <!-- 서비스 안내 (이용가능서비스 · 비용) -->
   <section class="block" data-sec="서비스안내">
     <!-- 서비스 안내 (이용가능서비스 · 비용) -->
@@ -581,7 +606,7 @@
         <span class="kind">학원 운영 통합 멤버십</span>
         <p class="desc">
           매달 자료와 미니 시스템이 채워지는 <b>학원 운영 통합 멤버십</b>입니다.
-          원장님과 강사진 교육부터 바로 쓰는 운영 도구, 학사 운영 지원까지 —
+          원장님과 강사진 교육부터 바로 쓰는 운영 도구, 학사 운영 지원까지,
           <b>배워서·받아서·눌러서</b> 원장님의 고민을 오늘의 결과로 바꿔드립니다.
         </p>
 
@@ -596,7 +621,6 @@
         <div class="price">
           <div class="row"><span class="won">390,000원</span><span class="per">/ 월 · VAT 별도</span></div>
           <div class="sub" data-v="하와이비용"><b>세팅비 1,000,000원 (VAT 별도) · 최초 1회</b></div>
-          <div class="sub">가입하는 날 <b>원장님 학원 위치</b>를 기준으로 한 맞춤 세팅으로 시작합니다.</div>
         </div>
       </article>
 
@@ -619,10 +643,9 @@
         </ul>
 
         <div class="price">
-          <div class="row"><span class="won">29,900원</span><span class="per">/ 월 · VAT 별도</span></div>
+          <div class="row" data-v="유미니월요금"><span class="was">29,900원</span><span class="won">14,900원</span><span class="per">/ 월 · VAT 별도</span></div>
           <div class="sub" data-v="유미니비용"><b>세팅비 1,000,000원 (VAT 별도) · 최초 1회</b></div>
           <div class="sub" data-v="유미니추가" data-sec="추가가맹" style="display:none"></div>
-          <div class="sub"><b>8월 이후 가입시 월 19,900원(VAT 별도)</b> — 8월 이전 월 14,900원(VAT 별도)</div>
         </div>
       </article>
 
@@ -633,7 +656,7 @@
     <div class="bhead" style="margin-top:44px">
       <span class="kick">다호관 원장님이라면</span>
       <h3>관이 늘수록, 관당 월 비용은 가벼워집니다</h3>
-      <p>클럽하와이는 두 번째 관부터 가맹비가 반값 이하로 — 규모가 커질수록 원장님 부담이 줄어드는 구조입니다.</p>
+      <p>클럽하와이는 두 번째 관부터 가맹비가 반값 이하입니다. 규모가 커질수록 원장님 부담이 줄어드는 구조입니다.</p>
     </div>
 
     <div class="multi">
@@ -690,15 +713,9 @@
         </div>
       </div>
 
-      <p class="foot-note">10호관 기준, 관당 월 비용이 <b>39만원 → 17.5만원(55%↓)</b>. 정상가 대비 매달 <b>2,145,000원</b>을 아낍니다. (VAT 별도)</p>
+      <p class="foot-note">10호관 기준, 관당 월 비용이 <b>39만원에서 17.5만원(55%↓)</b>. 정상가 대비 매달 <b>2,145,000원</b>을 아낍니다. (VAT 별도)</p>
       <p class="biz">11호관부터는 기업회원 가입으로 별도 안내드립니다.</p>
     </div>
-    </div>
-
-    <!-- 함께 가맹 특전 — 시트에서 '할인혜택 있음'일 때만 보인다 -->
-    <div class="meaning" data-sec="함께혜택" style="display:none;margin-top:18px;border-style:solid;background:linear-gradient(135deg,#FFF0F6,#FFF7FB)">
-      <h5 data-v="함께혜택제목">함께 가맹 특전</h5>
-      <p data-v="함께혜택"></p>
     </div>
 
   </section>
@@ -708,7 +725,7 @@
     <div class="bhead">
       <span class="kick">세팅비, 왜 이 금액일까요?</span>
       <h3>세팅비는 가입비가 아니라, 우리 학원 전용 제작비입니다</h3>
-      <p>브랜드북·미니 시스템·채널 세팅·데이터 이관·교육까지 — 전부 우리 학원 전용으로 만들어 드리는 산출물의 합입니다.</p>
+      <p>브랜드북·미니 시스템·채널 세팅·데이터 이관·교육까지 전부 우리 학원 전용으로 만들어 드리는 산출물의 합입니다.</p>
     </div>
 
     <!-- 세팅비 개별 단가 2단 -->
@@ -723,9 +740,9 @@
           <li class="sum"><span class="in">따로 맡기시면<em>동일 작업을 외부에 개별 의뢰할 경우</em></span><span class="pr"><b>170만원 이상</b></span></li>
         </ul>
         <div class="ourfee">
-          <span class="lb">클럽하와이 세팅비 (정가)</span>
-          <div class="amt">1,000,000원<small>VAT 별도 · 최초 1회</small></div>
-          <div class="today">오늘 참석 원장님 유미니와 함께 가입시 <b>500,000원</b><span class="vat">VAT 별도</span></div>
+          <span class="lb">클럽하와이 세팅비</span>
+          <div class="amt" data-v="하와이정가">1,000,000원<small>VAT 별도 · 최초 1회</small></div>
+          <div class="today" data-v="하와이할인" data-sec="하와이할인줄" style="display:none"></div>
         </div>
       </div>
       <div class="scard b">
@@ -741,9 +758,9 @@
           <li class="sum"><span class="in">따로 맡기시면<em>동일 작업을 외부에 개별 의뢰할 경우</em></span><span class="pr"><b>250만원 이상</b></span></li>
         </ul>
         <div class="ourfee">
-          <span class="lb">유미니 세팅비 (정가)</span>
-          <div class="amt">1,000,000원<small>VAT 별도 · 최초 1회</small></div>
-          <div class="today">오늘 참석 원장님 클럽하와이와 함께 가입시 <b>500,000원</b><span class="vat">VAT 별도</span></div>
+          <span class="lb">유미니 세팅비</span>
+          <div class="amt" data-v="유미니정가">1,000,000원<small>VAT 별도 · 최초 1회</small></div>
+          <div class="today" data-v="유미니할인" data-sec="유미니할인줄" style="display:none"></div>
         </div>
       </div>
     </div>
@@ -854,11 +871,6 @@
       <span>보이지 않는 3~4주 동안, 원장님 학원 이름이 들어간 문서와 템플릿이 하나씩 만들어지고 있습니다.</span>
     </div>
 
-    <!-- 할인 혜택 요약 — 시트에서 '할인혜택 있음'일 때만 보인다 -->
-    <div class="meaning" data-sec="할인요약" style="display:none;margin-top:20px;border-style:solid;background:linear-gradient(135deg,#FFF0F6,#FFF7FB)">
-      <h5 data-v="혜택요약제목">상담 가맹비 할인 혜택</h5>
-      <p data-v="혜택요약"></p>
-    </div>
   </section>
 
   <!-- 설문 -->
@@ -1019,7 +1031,7 @@ const SHEET_URL = "https://script.google.com/macros/s/AKfycbzJlJFgygkm6rGg9AaG33
    · 신청 명단은 지금처럼 한 시트에 모이고 '설명회코드'로 구분됩니다.
 
    ▸ 문구 바꾸기 — 바꿀 자리 이름을 쓰고 새 내용을 적습니다(<b>·<br> 같은 태그 사용 가능)
-       윗줄 · 제목 · 설명 · 혜택제목 · 혜택요약제목 · 신청제목 · 신청설명 · 문의제목
+       윗줄 · 제목 · 설명 · 신청제목 · 신청설명 · 문의제목
    ▸ 통째로 감추기 — 감출것: ['혜택'] 처럼 섹션 이름을 적습니다
        인사 · 혜택 · 서비스안내 · 세팅비 · 문의채널
    ▸ 새로 넣기 — 추가: [{ 뒤에:'혜택', 제목:'...', 내용:'...' }]
@@ -1119,17 +1131,25 @@ function applyDiscount(c){
     : '<b>가맹비 <s>' + 원(정가) + '원</s> → ' + 원(할인) + '원 (VAT 별도) · 최초 1회</b>';
   if (c.정가하와이 > 0) setText('하와이비용', 비용(c.정가하와이, c.할인하와이));
   if (c.정가유미니 > 0) setText('유미니비용', 비용(c.정가유미니, c.할인유미니));
-  const 함께할인 = Number(c.정가함께) > 0 && Number(c.할인함께) > 0 && Number(c.할인함께) < Number(c.정가함께);
-  if (!함께할인) { showSec('함께혜택', false); showSec('할인요약', false); return; }
-  setText('함께혜택제목', 이름);
-  setText('함께혜택', '클럽하와이 + 유미니를 <b>함께 가맹</b>하시면 가맹비 총 <s>' + 원(c.정가함께) + '원</s>이 ' +
-                     '<b>총 ' + 원(c.할인함께) + '원</b>으로 — <b>' + 원(Number(c.정가함께) - Number(c.할인함께)) + '원</b>을 덜어드립니다. (VAT 별도)');
-  showSec('함께혜택', true);
-  setText('혜택요약제목', 이름);
-  setText('혜택요약', '<b>클럽하와이 ' + 만(c.정가하와이) + '원 → ' + 만(c.할인하와이) + '원 · 유미니 ' +
-                     만(c.정가유미니) + '원 → ' + 만(c.할인유미니) + '원.</b> 두 가지를 함께 가맹하시면 ' +
-                     '가맹비 총 ' + 만(c.정가함께) + '원이 <b>총 ' + 만(c.할인함께) + '원</b>이 됩니다. (VAT 별도)');
-  showSec('할인요약', true);
+  // 세팅비 상세(아래쪽)의 정가·할인가 — 상자 없이 색으로만 강조
+  const 세팅 = (정가키, 할인키, 정가이름, 할인이름, 줄이름, 짝) => {
+    const 정가 = Number(c[정가키] || 0), 할인 = Number(c[할인키] || 0);
+    if (정가 > 0) setText(정가이름, 원(정가) + '원<small>VAT 별도 · 최초 1회</small>');
+    if (!(할인 > 0) || 할인 >= 정가) { showSec(줄이름, false); return; }
+    setText(할인이름, 이름 + ' <b>' + 원(할인) + '원</b><span class="vat">' + 짝 + '와 함께 가입 시 · VAT 별도</span>');
+    showSec(줄이름, true);
+  };
+  // 유미니 월 구독료 — 시트에 적으면 그 값으로(할인가만 적으면 취소선 없이)
+  // 월 요금은 만 원 안팎이라, 실수로 엉뚱한 값(예: 회차 코드)이 들어오면 무시한다
+  const 월값 = v => (Number(v || 0) >= 1000 ? Number(v) : 0);
+  const 월정 = 월값(c.유미니월정가), 월할 = 월값(c.유미니월할인가);
+  if (월정 > 0 || 월할 > 0) {
+    const 취소 = (월정 > 0 && 월할 > 0 && 월할 < 월정) ? '<span class="was">' + 원(월정) + '원</span>' : '';
+    const 지금 = 월할 > 0 ? 월할 : 월정;
+    setText('유미니월요금', 취소 + '<span class="won">' + 원(지금) + '원</span><span class="per">/ 월 · VAT 별도</span>');
+  }
+  세팅('정가하와이', '할인하와이', '하와이정가', '하와이할인', '하와이할인줄', '유미니');
+  세팅('정가유미니', '할인유미니', '유미니정가', '유미니할인', '유미니할인줄', '클럽하와이');
 }
 
 /* 다호관 혜택 — 세 구간 금액만 받아 표·막대그래프·문구를 다시 그린다(디자인은 그대로) */
@@ -1156,7 +1176,7 @@ function applyDahogwan(p1, p2, p3){
   });
   const avg10 = Math.round(관당(10));
   const note = box.querySelector('.foot-note');
-  if (note) note.innerHTML = '10호관 기준, 관당 월 비용이 <b>' + 만(p1) + '원 → ' + 만(avg10) + '원(' +
+  if (note) note.innerHTML = '10호관 기준, 관당 월 비용이 <b>' + 만(p1) + '원에서 ' + 만(avg10) + '원(' +
     Math.round((1 - avg10 / p1) * 100) + '%↓)</b>. 정상가 대비 매달 <b>' + 원(p1 * 10 - avg10 * 10) + '원</b>을 아낍니다. (VAT 별도)';
   showSec('다호관', true);
 }
@@ -1178,9 +1198,58 @@ function applyAddon(c){
   showSec('추가가맹', true);
 }
 
+/* 맨 위 강조 배너 — 할인이 있는 항목만 카드로 만들고, 아끼는 금액을 크게 보여 준다 */
+function buildBanner(c){
+  const 정 = [Number(c.정가하와이 || 0), Number(c.정가유미니 || 0), Number(c.정가함께 || 0)];
+  const 할 = [Number(c.할인하와이 || 0), Number(c.할인유미니 || 0), Number(c.할인함께 || 0)];
+  const 이름 = ['클럽하와이 가맹', '유미니 가맹', '클럽하와이 + 유미니 함께 가맹'];
+  const 카드 = [];
+  for (let i = 0; i < 3; i++) {
+    if (!(정[i] > 0) || !(할[i] > 0) || 할[i] >= 정[i]) continue;
+    카드.push('<div class="deal' + (i === 2 ? ' best' : '') + '">' +
+      '<div class="who">' + 이름[i] + '</div>' +
+      '<div class="price"><s>' + 원(정[i]) + '원</s>' + 원(할[i]) + '원<i>VAT 별도</i></div>' +
+      '</div>');
+  }
+  // 기존 클럽하와이 회원의 유미니 추가 가맹도 혜택이면 함께 세운다
+  const 추정 = Number(c.추가가맹정가 || 0), 추할 = Number(c.추가가맹할인가 || 0);
+  if (String(c.추가가맹혜택 || '').indexOf('있') === 0 && 추할 > 0) {
+    const d = String(c.추가가맹기한 || '').slice(0, 10);
+    let 기한 = '';
+    if (/^\d{4}-\d{2}-\d{2}$/.test(d)) {
+      const p = d.split('-');
+      기한 = '<span class="until">' + Number(p[1]) + '월 ' + Number(p[2]) + '일까지 가입 시</span>';
+    }
+    카드.push('<div class="deal">' +
+      '<div class="who">이미 클럽하와이 회원 · 유미니 추가</div>' +
+      '<div class="price">' + (추정 > 추할 ? '<s>' + 원(추정) + '원</s>' : '') + 원(추할) + '원<i>VAT 별도</i>' + 기한 + '</div>' +
+      '</div>');
+  }
+  if (!카드.length) return false;
+
+  setText('배너제목', c.혜택이름 || '참석 원장님 한정 혜택');
+  setText('배너카드', 카드.join(''));
+
+  // 아끼는 금액 — 함께 가맹 기준(없으면 두 서비스 할인액 합)
+  let 아낌 = 0, 기준 = 0;
+  if (정[2] > 0 && 할[2] > 0 && 할[2] < 정[2]) { 아낌 = 정[2] - 할[2]; 기준 = 정[2]; }
+  else {
+    for (let i = 0; i < 2; i++) if (정[i] > 할[i] && 할[i] > 0) { 아낌 += 정[i] - 할[i]; 기준 += 정[i]; }
+  }
+  if (아낌 > 0) {
+    const 율 = 기준 > 0 ? Math.round((아낌 / 기준) * 100) : 0;
+    setText('배너절감', '<span class="lb">오늘 원장님이 아끼시는 금액</span>' +
+      '<span class="big">' + 원(아낌) + '원<small>' + 율 + '% 할인 · VAT 별도</small></span>');
+  } else {
+    setText('배너절감', '');
+  }
+  showSec('혜택배너', true);
+  return true;
+}
+
 function applyConfig(c){
   if (!c || c.찾음 === false) return;              // 시트에 그 회차 줄이 없으면 지금 화면 그대로
-  if (String(c.할인혜택 || '').indexOf('있') === 0) applyDiscount(c);
+  if (String(c.할인혜택 || '').indexOf('있') === 0) { applyDiscount(c); buildBanner(c); }
   if (String(c.다호관혜택 || '').indexOf('있') === 0) applyDahogwan(Number(c.다호관1호관), Number(c.다호관2_5호관), Number(c.다호관6_10호관));
   if (String(c.추가가맹혜택 || '').indexOf('있') === 0) applyAddon(c);
 }
