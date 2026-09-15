@@ -555,7 +555,7 @@
   <div class="narrow">
     <div class="sec-title form-title" id="apply">
       <h3>참석 신청</h3>
-      <p>아래 내용을 남겨주시면 신청 확인 알림톡을 보내드릴게요.</p>
+      <p>아래 내용을 남겨주시면 신청 확인 문자를 보내드릴게요.</p>
     </div>
 
     <div class="card" id="card">
@@ -580,7 +580,7 @@
 
         <div class="field">
           <label class="q" for="phone">연락처 <span class="req">*</span></label>
-          <span class="hint">신청 확인 알림톡이 이 번호로 가요</span>
+          <span class="hint">신청 확인 문자가 이 번호로 가요</span>
           <input type="tel" id="phone" placeholder="010-0000-0000" inputmode="numeric" maxlength="13" autocomplete="tel" enterkeyhint="done">
         </div>
 
@@ -611,7 +611,7 @@
           <span class="txt">
             <b>(필수) 개인정보 수집·이용에 동의합니다.</b>
             <small>수집 항목: 성함·학원명·지역·연락처·직책 (추가한 참석자: 성함·직책·연락처)</small>
-            <small>이용 목적: 설명회 참석 신청 접수와 알림톡 안내 · 보유 기간: <span id="keep"></span></small>
+            <small>이용 목적: 설명회 참석 신청 접수와 문자 안내 · 보유 기간: <span id="keep"></span></small>
             <small>동의하지 않으실 수 있지만, 이 경우 신청이 어려워요.</small>
           </span>
         </label>
@@ -852,11 +852,11 @@
    APPS_SCRIPT_URL  Apps Script 웹앱 주소(…/exec). 마감 확인과 신청 기록이 이 주소로 갑니다.
                     붙일 코드와 배포 방법은 같은 폴더 교육_apps_script.gs 맨 위에 있어요.
    ───────────────────────────────────────────── */
-const PREVIEW = true;
-const APPS_SCRIPT_URL = "";
+const PREVIEW = false;
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyfhSrj2T21DT4-j44bRNkvgQHwHV_e9OC4KmqA17aCFOa17RssrmWn0iBC57j7MIb7/exec";
 
 /* 설명회 안내 — 첫 화면·안내 줄·하단 버튼·완료 화면에 그대로 들어갑니다.
-   이름·일시·장소는 교육_apps_script.gs 의 EDU_NAME·EDU_DATE·EDU_PLACE(알림톡 문구)와,
+   이름·일시·장소는 교육_apps_script.gs 의 EDU_NAME·EDU_DATE·EDU_PLACE(안내 문자 문구)와,
    정원·마감 문구는 같은 파일의 CAPACITY·DEADLINE(실제로 마감하는 기준)과 함께 고칩니다 */
 const EDU = {
   title:    "유미니 도입 체험 설명회",
@@ -1055,7 +1055,7 @@ form.addEventListener('submit', e => {
     if (!el.value.trim()) return fail('아직 비어 있는 필수 항목이 있어요.', el);
   }
   if (!/^01\d{8,9}$/.test(phone.value.replace(/\D/g,'')))
-    return fail('알림톡을 받으실 휴대폰 번호를 확인해 주세요.', phone);
+    return fail('안내 문자를 받으실 휴대폰 번호를 확인해 주세요.', phone);
   if (!picked('직책'))     return fail('직책을 골라주세요.', firstOf('직책'));
   /* 추가한 참석자 — 성함·직책·휴대폰, 번호는 서로 겹치지 않게 */
   const companions = [], seenTel = [phone.value.replace(/\D/g,'')];
@@ -1111,7 +1111,7 @@ function finish(id, dup){
   $('doneTitle').textContent = dup ? '이미 신청하셨어요' : '신청이 완료됐어요!';
   $('doneMsg').textContent = dup
     ? '이 번호로 접수된 신청이 있어요.\n인원을 바꾸시려면 카카오 채널로 알려주세요.'
-    : '신청 확인 알림톡을 곧 보내드릴게요.\n설명회 날 뵙겠습니다 :)';
+    : '신청 확인 문자를 보내드릴게요.\n설명회 날 뵙겠습니다 :)';
   $('doneOid').textContent = '접수번호 ' + id;
   document.body.classList.remove('closed');
   document.body.classList.add('submitted');
