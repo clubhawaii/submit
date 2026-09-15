@@ -80,7 +80,7 @@
 
   /* ── 설명회에서 알아가실 것 ───────── */
   /* 휴대폰에서 훑어보기 쉽게 — 카드마다 한 줄 설명 + 굵은 키워드 두 줄, 카드 사이·안쪽 여백은 넉넉히.
-     핵심 단어는 형광펜(.hl)과 굵은 파란 글자로, 현장 체험은 남색 카드로 가장 눈에 띄게 둡니다 */
+     핵심 단어는 형광펜(.hl)과 굵은 파란 글자로, 현장 체험은 큰 「3개월」 숫자와 연하늘 카드로 강조합니다 */
   .learn-sec{margin:64px auto 72px}
   .bhead{text-align:center;margin-bottom:28px}
   .bhead .kick{display:inline-block;margin-bottom:14px;padding:5px 13px;border:1px solid var(--accent-line);border-radius:999px;background:#fff;
@@ -98,10 +98,20 @@
   .lcard li::before{content:'';position:absolute;left:3px;top:8px;width:10px;height:6px;
     border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
   .lcard li b{font-weight:800;color:var(--accent-text)}
-  .lcard.exp{grid-column:1 / -1;padding:30px 24px;border-color:var(--accent-deep);background:var(--accent-deep);text-align:center}
-  .lcard.exp .no{background:rgba(255,255,255,0.14);color:#fff}
-  .lcard.exp h4{margin:0;font-size:21px;color:#fff}
-  .lcard.exp .hl{background:linear-gradient(transparent 60%, rgba(58,134,200,0.55) 60%)}
+  .lcard.exp{grid-column:1 / -1;display:flex;align-items:center;justify-content:center;gap:20px;padding:24px;
+    border:1.5px solid var(--accent-line);background:linear-gradient(135deg,#EAF3FB 0%,#FFFFFF 75%)}
+  .exp-num{flex:none;display:flex;align-items:baseline;gap:2px;padding-right:20px;border-right:1px solid var(--accent-line);color:var(--accent-text)}
+  .exp-num strong{font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1}
+  .exp-num span{font-size:17px;font-weight:800;letter-spacing:-0.3px;line-height:1.2}
+  .exp-txt{min-width:0}
+  .lcard.exp .no{margin-bottom:8px;border:1px solid var(--accent-line);background:#fff}
+  .lcard.exp h4{margin:0;font-size:19px}
+  .lcard.exp .hl{background:linear-gradient(transparent 60%, #BFDAF2 60%)}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}   /* 화면 읽기 프로그램용 — 큰 숫자는 aria-hidden */
+  @media (max-width:374px){
+    .lcard.exp{flex-direction:column;align-items:flex-start;gap:12px}
+    .exp-num{padding:0 0 12px;border-right:0;border-bottom:1px solid var(--accent-line)}
+  }
   .closing{margin:36px 0 0;text-align:center;font-size:18px;font-weight:800;letter-spacing:-0.5px;line-height:1.5;word-break:keep-all}
   .closing em{font-style:normal;color:var(--accent-text)}
   @media (max-width:760px){
@@ -519,8 +529,11 @@
         </ul>
       </article>
       <article class="lcard exp">
-        <span class="no">현장 체험</span>
-        <h4>3개월 정착 과정을<br><span class="hl">현장에서 직접 체험</span>해 보세요</h4>
+        <div class="exp-num" aria-hidden="true"><strong>3</strong><span>개월</span></div>
+        <div class="exp-txt">
+          <span class="no">현장 체험</span>
+          <h4><span class="sr">3개월 </span>정착 과정을 현장에서<br><span class="hl">직접 체험</span>해 보세요</h4>
+        </div>
       </article>
     </div>
 
