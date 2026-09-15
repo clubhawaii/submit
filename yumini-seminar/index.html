@@ -79,39 +79,40 @@
   .hero .due{margin:12px 0 0;font-size:13px;line-height:1.6;color:var(--ink-light);letter-spacing:-0.2px}
 
   /* ── 설명회에서 알아가실 것 ───────── */
-  .learn-sec{margin:52px auto 64px}
-  .bhead{text-align:center;margin-bottom:30px}
-  .bhead .kick{
-    display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:-0.2px;color:var(--accent-text);
-    background:#fff;border:1px solid var(--accent-line);border-radius:999px;padding:5px 13px;margin-bottom:12px;line-height:1.4;
-  }
-  .bhead h3{font-size:23px;font-weight:800;letter-spacing:-0.7px;margin:0 0 10px;line-height:1.45;word-break:keep-all}
-  .bhead p{font-size:14.5px;color:var(--ink-mid);margin:0 auto;max-width:520px;letter-spacing:-0.3px;line-height:1.75;word-break:keep-all}
-  .learn{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .learn article{border-top:3px solid var(--line);border-bottom:3px solid var(--line);padding:20px 0 22px;word-break:keep-all}
-  .learn article.a{border-color:var(--accent)}
-  .learn article.b{border-color:var(--navy)}
-  .learn .no{display:block;font-size:12px;font-weight:800;letter-spacing:0.4px;margin-bottom:6px}
-  .learn .a .no{color:var(--accent-text)}
-  .learn .b .no{color:var(--navy)}
-  .learn h4{font-size:19px;font-weight:800;letter-spacing:-0.5px;margin:0 0 10px;line-height:1.45}
-  .learn p{font-size:14.5px;color:var(--ink-mid);margin:0 0 18px;letter-spacing:-0.3px;line-height:1.8}
-  .learn ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-  .learn li{font-size:14px;font-weight:600;letter-spacing:-0.3px;line-height:1.6;padding-left:22px;position:relative}
-  .learn li::before{
-    content:'';position:absolute;left:2px;top:8px;width:9px;height:5px;
-    border-left:2px solid;border-bottom:2px solid;transform:rotate(-45deg);
-  }
-  .learn .a li::before{border-color:var(--accent)}
-  .learn .b li::before{border-color:var(--navy)}
-  .closing{margin:30px 0 0;text-align:center;font-size:18px;font-weight:800;letter-spacing:-0.5px;line-height:1.5;word-break:keep-all}
+  /* 휴대폰에서 훑어보기 쉽게 — 카드마다 한 줄 설명 + 굵은 키워드 두 줄, 카드 사이·안쪽 여백은 넉넉히.
+     핵심 단어는 형광펜(.hl)과 굵은 파란 글자로, 현장 체험은 남색 카드로 가장 눈에 띄게 둡니다 */
+  .learn-sec{margin:64px auto 72px}
+  .bhead{text-align:center;margin-bottom:28px}
+  .bhead .kick{display:inline-block;margin-bottom:14px;padding:5px 13px;border:1px solid var(--accent-line);border-radius:999px;background:#fff;
+    font-size:12.5px;font-weight:700;letter-spacing:-0.2px;line-height:1.4;color:var(--accent-text)}
+  .bhead h3{margin:0;font-size:23px;font-weight:800;letter-spacing:-0.7px;line-height:1.45;word-break:keep-all}
+  .learn{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .lcard{padding:26px 24px 24px;border:1px solid var(--line);border-radius:16px;background:#fff;word-break:keep-all}
+  .lcard .no{display:inline-block;margin-bottom:14px;padding:3px 10px;border-radius:999px;background:var(--accent-soft);
+    font-size:12.5px;font-weight:800;letter-spacing:0.2px;line-height:1.5;color:var(--accent-text)}
+  .lcard h4{margin:0 0 10px;font-size:20px;font-weight:800;letter-spacing:-0.6px;line-height:1.45;color:var(--ink)}
+  .lcard .hl{background:linear-gradient(transparent 60%, #CFE4F6 60%)}
+  .lcard p{margin:0 0 18px;font-size:15px;letter-spacing:-0.3px;line-height:1.7;color:var(--ink-mid)}
+  .lcard ul{list-style:none;margin:0;padding:18px 0 0;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:12px}
+  .lcard li{position:relative;padding-left:26px;font-size:15px;letter-spacing:-0.3px;line-height:1.6;color:var(--ink)}
+  .lcard li::before{content:'';position:absolute;left:3px;top:8px;width:10px;height:6px;
+    border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+  .lcard li b{font-weight:800;color:var(--accent-text)}
+  .lcard.exp{grid-column:1 / -1;padding:30px 24px;border-color:var(--accent-deep);background:var(--accent-deep);text-align:center}
+  .lcard.exp .no{background:rgba(255,255,255,0.14);color:#fff}
+  .lcard.exp h4{margin:0;font-size:21px;color:#fff}
+  .lcard.exp .hl{background:linear-gradient(transparent 60%, rgba(58,134,200,0.55) 60%)}
+  .closing{margin:36px 0 0;text-align:center;font-size:18px;font-weight:800;letter-spacing:-0.5px;line-height:1.5;word-break:keep-all}
   .closing em{font-style:normal;color:var(--accent-text)}
-  /* 현장 체험 안내 — 01·02 아래에 한 줄로 가로질러 놓습니다 */
-  .experience{margin:28px 0 0;padding:20px 22px;border:1px solid var(--accent-line);border-radius:12px;background:#fff;word-break:keep-all}
-  .experience .tag{display:inline-block;margin-bottom:10px;padding:3px 10px;border-radius:999px;background:var(--accent-deep);
-    font-size:12.5px;font-weight:700;letter-spacing:-0.2px;line-height:1.5;color:#fff}
-  .experience b{display:block;font-size:17px;font-weight:800;letter-spacing:-0.5px;line-height:1.45;color:var(--ink)}
-  .experience p{margin:6px 0 0;font-size:14.5px;letter-spacing:-0.3px;line-height:1.75;color:var(--ink-mid)}
+  @media (max-width:760px){
+    .learn{grid-template-columns:1fr;gap:14px}
+    .learn-sec{margin:52px auto 60px}
+  }
+  @media (max-width:420px){
+    .bhead h3{font-size:21px}
+    .lcard{padding:24px 20px 22px}
+    .lcard h4{font-size:19px}
+  }
 
   /* ── 설명회 안내 ─────────────────── */
   /* 카드 대신 위아래 굵은 선으로 묶는다 */
@@ -337,15 +338,9 @@
     padding:6px 11px;border-radius:99px;white-space:nowrap;cursor:pointer}
   .peek button.on{background:#fff;color:var(--ink)}
 
-  @media (max-width:760px){
-    .learn{grid-template-columns:1fr;gap:20px}
-    .learn article.a{border-bottom:0;padding-bottom:6px}
-    .learn-sec{margin:40px auto 52px}
-  }
   @media (max-width:420px){
     .hero h1{font-size:26px}
     .hero .lead{font-size:15px}
-    .bhead h3{font-size:21px}
     .card{padding:24px 20px;border-radius:10px}
     .chan-grid{grid-template-columns:1fr}
   }
@@ -502,33 +497,33 @@
     <div class="bhead">
       <span class="kick">설명회에서 알아가실 것</span>
       <h3>상담 잘하던 실장님이 나가면,<br>쌓아온 것도 같이 흐려지죠</h3>
-      <p>이번 설명회는 그 고민에서 시작해요.</p>
     </div>
+
     <div class="learn">
-      <article class="a">
+      <article class="lcard">
         <span class="no">01</span>
-        <h4>우리 학원 전속 상담 실장</h4>
-        <p>상담 잘하는 한 사람에게 기대면 그 사람이 떠날 때 노하우도 같이 나가요. 유미니는 상담 흐름과 상담계획서·학습전략서를 학원에 쌓아 둬요.</p>
+        <h4>우리 학원 <span class="hl">전속 상담 실장</span></h4>
+        <p>상담 노하우가 사람이 아니라 학원에 쌓여요.</p>
         <ul>
-          <li>흐름대로만 하면 누가 상담해도 같은 퀄리티</li>
-          <li>예약부터 상담계획서·전략서까지 한 번에</li>
+          <li>흐름대로만 하면 <b>누가 상담해도 같은 퀄리티</b></li>
+          <li>예약부터 <b>상담계획서·전략서</b>까지 한 번에</li>
         </ul>
       </article>
-      <article class="b">
+      <article class="lcard">
         <span class="no">02</span>
-        <h4>등록한 학생을 정착시키는 힘</h4>
-        <p>등록하고 첫 3개월 안에 빠지는 학생, 왜 빠지는지도 모르고 보낸 적 있으시죠? 신규생을 석 달 동안 집중해서 챙기는 방법을 알려드려요.</p>
+        <h4>등록한 학생을 <span class="hl">정착</span>시키는 힘</h4>
+        <p>첫 3개월, 신규생을 집중해서 챙기는 방법을 알려드려요.</p>
         <ul>
-          <li>3개월 집중 관리로 초기 정착까지</li>
-          <li>매주 학부모에게 피드백이 자동으로 전해져요</li>
+          <li><b>3개월 집중 관리</b>로 초기 정착까지</li>
+          <li><b>매주</b> 학부모에게 피드백 자동 전달</li>
         </ul>
       </article>
+      <article class="lcard exp">
+        <span class="no">현장 체험</span>
+        <h4>3개월 정착 과정을<br><span class="hl">현장에서 직접 체험</span>해 보세요</h4>
+      </article>
     </div>
-    <div class="experience">
-      <span class="tag">현장 체험</span>
-      <b>3개월 정착 과정을 현장에서 직접 체험해 보세요</b>
-      <p>신규생이 등록 후 첫 3개월을 잘 넘기도록 챙기는 과정을 설명회 자리에서 직접 체험하실 수 있어요.</p>
-    </div>
+
     <p class="closing">문의는 등록으로, 등록은 <em>정착</em>으로.</p>
     <button type="button" class="intro-card" data-intro>
       <span class="t"><b>유미니 멤버십 소개서</b><small>유미니가 어떤 서비스인지 먼저 살펴보세요</small></span>
