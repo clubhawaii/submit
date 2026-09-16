@@ -765,7 +765,7 @@
           <input type="tel" id="phone" placeholder="010-0000-0000" inputmode="numeric" maxlength="13" autocomplete="tel" enterkeyhint="done">
         </div>
 
-        <!-- 직책 선택지를 바꾸면 교육_apps_script_부산.gs 의 ROLES 도 함께 고칩니다 -->
+        <!-- 직책 선택지를 바꾸면 교육_apps_script.gs 의 ROLES 도 함께 고칩니다 -->
         <div class="field">
           <label class="q">직책 <span class="req">*</span></label>
           <div class="opts row">
@@ -1033,14 +1033,17 @@
    PREVIEW          true  = 검토 모드 (서버 없이 화면만 확인 + 위쪽 이동 바, 신청은 기록 안 됨)
                     false = 실제 운영 모드
    APPS_SCRIPT_URL  Apps Script 웹앱 주소(…/exec). 마감 확인과 신청 기록이 이 주소로 갑니다.
-                    붙일 코드와 배포 방법은 같은 폴더 교육_apps_script_부산.gs 맨 위에 있어요.
+                    서울·부산이 같은 웹앱을 씁니다. 코드와 배포 방법은 같은 폴더 교육_apps_script.gs 맨 위에 있어요.
    ───────────────────────────────────────────── */
-const PREVIEW = false;   // 운영 모드. APPS_SCRIPT_URL 이 비어 있는 동안에는 신청을 눌러도 접수되지 않고 「전송이 안 됐어요」 안내가 뜹니다
-const APPS_SCRIPT_URL = "";   // 부산용 Apps Script 웹앱 주소(…/exec) — 교육_apps_script_부산.gs 를 배포하면 나옵니다
+const PREVIEW = false;   // 운영 모드 — 신청이 실제 시트 「부산 신청」 탭에 쌓입니다
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyfhSrj2T21DT4-j44bRNkvgQHwHV_e9OC4KmqA17aCFOa17RssrmWn0iBC57j7MIb7/exec";   // 서울 페이지와 같은 웹앱 — 2026-09-16 통합 코드 배포 확인 후 연결
+/* 서버에 알리는 회차 이름 — 교육_apps_script.gs 의 TRACKS.busan 과 같아야 합니다.
+   통합 코드가 배포되기 전에 위 주소를 넣으면 부산 신청이 서울 명단에 쌓이니 순서를 꼭 지킵니다 */
+const SERVER_TRACK = "busan";
 
 /* 이 페이지에서 받는 신청 — 설명회 하나입니다. 문구가 안내 표·신청서·완료 화면에 그대로 들어갑니다.
    클럽하와이 상담은 첫 화면 카드에서 공식 상담 신청 페이지로 바로 보냅니다.
-   교육_apps_script_부산.gs 의 TRACKS 와 짝이 맞아야 해요 (seminar 라는 이름이 서버로 갑니다).
+   서버로는 아래 SERVER_TRACK(busan)이 가고, 일시·장소·정원·마감은 교육_apps_script.gs 의 TRACKS.busan 과 짝이 맞아야 해요.
    값이 빈 줄은 화면에서 통째로 숨습니다 */
 const TRACKS = {
   seminar: {
@@ -1234,7 +1237,7 @@ function fail(msg, el){
 const compBox   = $('companions');
 const addBtn    = $('addCompanion');
 const compAgree = $('compAgree');
-const ROLES = ['원장', '부원장·실장', '강사', '기타'];   // 교육_apps_script_부산.gs 의 ROLES 와 같게 고칩니다
+const ROLES = ['원장', '부원장·실장', '강사', '기타'];   // 교육_apps_script.gs 의 ROLES 와 같게 고칩니다
 let seatsLeft = Infinity, compSeq = 0;   // 남은 자리는 서버 마감 확인이 알려줍니다 (검토 모드에서는 제한 없음)
 let closedReason = '';                   // 설명회가 마감됐다면 그 이유('deadline'·'full')가 들어갑니다
 
@@ -1345,7 +1348,7 @@ form.addEventListener('submit', e => {
   sending = true;
   btn.disabled = true;
   btn.textContent = '보내는 중...';
-  callServer({ action:'apply', track:track, reqId:reqId, apply:apply })
+  callServer({ action:'apply', track:SERVER_TRACK, reqId:reqId, apply:apply })
     .then(res => finish(res.applyId, res.dup), e2 => {
       console.error('[' + EDU.title + ' 신청]', e2);
       const res = e2.res;
@@ -1395,7 +1398,7 @@ function showClosed(reason){
 /* 페이지를 열 때 이미 마감됐는지 확인합니다. 확인이 안 되면 그냥 열어 두고, 제출할 때 서버가 다시 막습니다 */
 function checkOpen(){
   if (PREVIEW || !APPS_SCRIPT_URL) return;
-  callServer({ action:'status', track:'seminar' })
+  callServer({ action:'status', track:SERVER_TRACK })
     .then(res => {
       if (typeof res.left === 'number') { seatsLeft = res.left; renumber(); }
       if (res.closed && !document.body.classList.contains('submitted')) markSeminarClosed(res.reason);
