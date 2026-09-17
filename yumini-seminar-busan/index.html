@@ -1068,7 +1068,7 @@ const TRACKS = {
       ['일시', T.date],
       ['장소', T.place, T.address],
       ['대상', T.target],
-      ['정원', T.capacity],
+      ['정원', T.capacity, seatsNote()],   // 남은 자리는 서버 확인이 오면 아래 작은 글씨로 붙습니다
       ['신청 마감', T.deadline]
     ]
   }
@@ -1129,7 +1129,7 @@ function paintHero(){
   $('heroTarget').hidden      = !S.target;
   fillFact('factDate',  S.date);
   fillFact('factPlace', S.place);
-  fillFact('factSeats', S.capacity);
+  fillFact('factSeats', [S.capacity, seatsNote()].filter(Boolean).join(' · '));
   $('heroDue').textContent = S.deadline ? '신청 마감 · ' + S.deadline : '';
   $('heroDue').hidden      = !S.deadline;
 }
@@ -1144,7 +1144,7 @@ function paintInfo(){
   $('agreePurpose').textContent = EDU.purpose;
   if (!sending) btn.textContent = EDU.btn;
   $('stickyDate').textContent = EDU.date || EDU.title;
-  $('stickyDue').textContent  = [EDU.capacity, EDU.deadline].filter(Boolean).join(' · ') || '언제든 신청하실 수 있어요';
+  $('stickyDue').textContent  = [seatsNote() || EDU.capacity, EDU.deadline].filter(Boolean).join(' · ') || '언제든 신청하실 수 있어요';
   const rows = EDU.rows(EDU);
   fillRows($('info'), rows);
   fillRows($('doneInfo'), rows.slice(0, 2));
@@ -1240,6 +1240,18 @@ const compAgree = $('compAgree');
 const ROLES = ['원장', '부원장·실장', '강사', '기타'];   // 교육_apps_script.gs 의 ROLES 와 같게 고칩니다
 let seatsLeft = Infinity, compSeq = 0;   // 남은 자리는 서버 마감 확인이 알려줍니다 (검토 모드에서는 제한 없음)
 let closedReason = '';                   // 설명회가 마감됐다면 그 이유('deadline'·'full')가 들어갑니다
+
+/* 남은 자리 문구 — 서버 확인 전(검토 모드·확인 실패)이나 자리가 없을 때는 빈 값이라 정원만 보입니다 */
+function seatsNote(){
+  return Number.isFinite(seatsLeft) && seatsLeft > 0 ? '남은 자리 ' + seatsLeft + '석' : '';
+}
+/* 서버가 알려준 남은 자리를 참석자 제한·첫 화면 알약·안내 표·하단 막대에 함께 반영합니다 */
+function setSeats(n){
+  seatsLeft = n;
+  renumber();
+  paintHero();
+  if (track) paintInfo();
+}
 
 function addCompanion(){
   const id = ++compSeq, card = document.createElement('div');
@@ -1355,7 +1367,7 @@ form.addEventListener('submit', e => {
       if (!res) return fail('앗, 전송이 안 됐어요. 잠시 후 다시 눌러주세요.');
       if (res.code === 'closed') return showClosed(res.reason);
       if (res.code === 'seats')
-        { seatsLeft = res.left; renumber(); return fail('남은 자리가 ' + res.left + '석이에요. 참석자를 줄여서 다시 신청해 주세요.', addBtn); }
+        { setSeats(res.left); return fail('남은 자리가 ' + res.left + '석이에요. 참석자를 줄여서 다시 신청해 주세요.', addBtn); }
       fail(res.error || '신청을 접수하지 못했어요. 잠시 후 다시 눌러주세요.');
     })
     .then(() => { sending = false; syncBtn(); btn.textContent = EDU.btn; });
@@ -1400,7 +1412,7 @@ function checkOpen(){
   if (PREVIEW || !APPS_SCRIPT_URL) return;
   callServer({ action:'status', track:SERVER_TRACK })
     .then(res => {
-      if (typeof res.left === 'number') { seatsLeft = res.left; renumber(); }
+      if (typeof res.left === 'number') setSeats(res.left);
       if (res.closed && !document.body.classList.contains('submitted')) markSeminarClosed(res.reason);
     })
     .catch(e => console.warn('[마감 확인]', e));
