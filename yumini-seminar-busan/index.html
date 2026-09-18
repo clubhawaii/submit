@@ -872,7 +872,7 @@
       <b id="stickyDate"></b>
       <small id="stickyDue"></small>
     </div>
-    <a href="#apply">참석 신청하기</a>
+    <a href="#apply" id="stickyGo">참석 신청하기</a>
   </div>
 </div>
 
@@ -1049,6 +1049,7 @@
   <span>검토용</span>
   <button type="button" data-s="form">신청서</button>
   <button type="button" data-s="done">완료</button>
+  <button type="button" data-s="wait">대기</button>
   <button type="button" data-s="closed">마감</button>
 </nav>
 
@@ -1089,6 +1090,15 @@ const TRACKS = {
     purpose:  "체험교육 참석 신청 접수와 문자 안내",
     doneMsg:  "신청 확인 문자를 보내드릴게요.\n체험교육 날 뵙겠습니다 :)",
     dupMsg:   "이 번호로 접수된 신청이 있어요.\n인원을 바꾸시려면 카카오 채널로 알려주세요.",
+    /* 정원이 찬 뒤 대기 신청 — 서버 TRACKS.busan.대기(5명)가 대기 자리를 알려줄 때만 이 문구로 바뀝니다 (2026-09-18) */
+    wait: {
+      formTitle:"대기 신청",
+      formLead: "준비한 30석이 모두 찼어요. 대기 신청을 남겨주시면 자리가 나는 대로 대기 순서대로 연락드릴게요.",
+      btn:      "대기 신청하기",
+      purpose:  "체험교육 대기 신청 접수와 문자 안내",
+      doneTitle:"대기 신청이 접수됐어요",
+      doneMsg:  "대기 접수 확인 문자를 보내드릴게요.\n자리가 나면 대기 순서대로 연락드릴게요."
+    },
     rows: T => [
       ['일시', T.date],
       ['장소', T.place, T.address],
@@ -1159,15 +1169,20 @@ function paintHero(){
   $('heroDue').hidden      = !S.deadline;
 }
 
+/* 문구 하나 — 대기 신청 중이면 EDU.wait 의 같은 이름 문구를, 없으면 기본 문구를 씁니다 */
+const say = k => (waiting && EDU.wait && EDU.wait[k]) || EDU[k];
+
 /* 고른 갈래의 문구를 안내 표·신청서·완료 화면에 채웁니다 */
 function paintInfo(){
   document.title = EDU.title + ' 신청 · 부산';
   $('infoTitle').textContent = EDU.infoTitle;
-  $('formTitle').textContent = EDU.formTitle;
-  $('formLead').textContent  = EDU.formLead;
+  $('formTitle').textContent = say('formTitle');
+  $('formLead').textContent  = say('formLead');
   $('agreeItems').textContent   = EDU.items;
-  $('agreePurpose').textContent = EDU.purpose;
-  if (!sending) btn.textContent = EDU.btn;
+  $('agreePurpose').textContent = say('purpose');
+  if (!sending) btn.textContent = say('btn');
+  $('stickyGo').textContent   = waiting ? '대기 신청하기' : '참석 신청하기';
+  $('introApply').textContent = waiting ? '체험교육 대기 신청하기' : '체험교육 참석 신청하기';
   $('stickyDate').textContent = EDU.date || EDU.title;
   $('stickyDue').textContent  = [seatsNote() || EDU.capacity, EDU.deadline].filter(Boolean).join(' · ') || '언제든 신청하실 수 있어요';
   const rows = EDU.rows(EDU);
@@ -1192,7 +1207,7 @@ function showTrack(key){
   picks.forEach(p => p.setAttribute('aria-expanded', String(p.dataset.pick === key)));
   paintInfo();
   /* 체험교육이 이미 마감됐다면 고르는 순간 마감 화면을 보여줍니다 */
-  if (체험교육 && closedReason) showClosed(closedReason);
+  if (체험교육 && closedReason) showClosed(closedReason, closedWaitFull);
   else { document.body.classList.remove('closed'); syncSticky(); }
   $('apply').scrollIntoView({ block:'start', behavior:'smooth' });
 }
@@ -1265,10 +1280,17 @@ const compAgree = $('compAgree');
 const ROLES = ['원장', '부원장·실장', '강사', '기타'];   // 교육_apps_script.gs 의 ROLES 와 같게 고칩니다
 let seatsLeft = Infinity, compSeq = 0;   // 남은 자리는 서버 마감 확인이 알려줍니다 (검토 모드에서는 제한 없음)
 let closedReason = '';                   // 체험교육이 마감됐다면 그 이유('deadline'·'full')가 들어갑니다
+let closedWaitFull = false;              // 대기 자리까지 모두 찼는지 (마감 화면 문구)
+let waiting = false;                     // 정원이 차서 대기 신청을 받는 중 — 이때 seatsLeft 는 남은 대기 자리예요
 
 /* 남은 자리 문구 — 서버 확인 전(검토 모드·확인 실패)이나 자리가 없을 때는 빈 값이라 정원만 보입니다 */
 function seatsNote(){
-  return Number.isFinite(seatsLeft) && seatsLeft > 0 ? '남은 자리 ' + seatsLeft + '석' : '';
+  if (!Number.isFinite(seatsLeft) || seatsLeft <= 0) return '';
+  return waiting ? '정원 마감 · 대기 ' + seatsLeft + '자리 남음' : '남은 자리 ' + seatsLeft + '석';
+}
+/* 인원이 남은 자리보다 많을 때 앞머리 — 「남은 자리가 3석이에요」 / 「대기 자리가 3자리 남았어요」 */
+function leftLine(n){
+  return waiting ? '대기 자리가 ' + n + '자리 남았어요' : '남은 자리가 ' + n + '석이에요';
 }
 /* 서버가 알려준 남은 자리를 참석자 제한·첫 화면 알약·안내 표·하단 막대에 함께 반영합니다 */
 function setSeats(n){
@@ -1305,8 +1327,8 @@ function renumber(){
   const full = $('seatFull');
   full.hidden = total < seatsLeft;
   full.textContent = total > seatsLeft
-    ? '남은 자리가 ' + seatsLeft + '석이에요. 참석자를 줄여 주세요.'
-    : '남은 자리가 ' + seatsLeft + '석이라 더 추가할 수 없어요.';
+    ? leftLine(seatsLeft) + '. 참석자를 줄여 주세요.'
+    : (waiting ? '대기 자리가 ' + seatsLeft + '자리라' : '남은 자리가 ' + seatsLeft + '석이라') + ' 더 추가할 수 없어요.';
   reqId = '';
   syncBtn();
 }
@@ -1364,7 +1386,7 @@ form.addEventListener('submit', e => {
     }
     if (companions.length && !compAgree.checked) return fail('추가한 참석자분께 알리고 적었는지 확인해 주세요.', compAgree);
     if (1 + companions.length > seatsLeft)
-      return fail('남은 자리가 ' + seatsLeft + '석이에요. 참석자를 줄여서 다시 신청해 주세요.', addBtn);
+      return fail(leftLine(seatsLeft) + '. 참석자를 줄여서 다시 신청해 주세요.', addBtn);
   }
 
   /* 선택지·인원·마감은 서버가 목록과 시트로 다시 확인합니다 */
@@ -1385,23 +1407,36 @@ form.addEventListener('submit', e => {
   sending = true;
   btn.disabled = true;
   btn.textContent = '보내는 중...';
-  callServer({ action:'apply', track:SERVER_TRACK, reqId:reqId, apply:apply })
-    .then(res => finish(res.applyId, res.dup), e2 => {
+  /* 대기 신청 중이면 서버의 대기 회차(busan_wait)로 보냅니다 */
+  callServer({ action:'apply', track:waiting ? SERVER_TRACK + '_wait' : SERVER_TRACK, reqId:reqId, apply:apply })
+    .then(res => finish(res.applyId, res.dup, res.waitNo), e2 => {
       console.error('[' + EDU.title + ' 신청]', e2);
       const res = e2.res;
       if (!res) return fail('앗, 전송이 안 됐어요. 잠시 후 다시 눌러주세요.');
-      if (res.code === 'closed') return showClosed(res.reason);
+      if (res.code === 'closed') {
+        /* 보는 사이 정원이 찼어요 — 적은 내용은 그대로 두고 대기 신청으로 바꿔, 한 번 더 누르게 합니다 */
+        if (res.wait && !res.wait.closed) {
+          enterWait(res.wait);
+          return fail('방금 준비한 자리가 모두 찼어요. 대기로 남기시려면 「대기 신청하기」를 한 번 더 눌러 주세요.', btn);
+        }
+        return showClosed(res.reason, waiting || !!res.wait);
+      }
+      /* 대기 중에 자리가 다시 났어요 — 참석 신청으로 되돌립니다 */
+      if (res.code === 'open') {
+        leaveWait(res.left);
+        return fail('자리가 다시 났어요! 「참석 신청하기」를 눌러 신청해 주세요.', btn);
+      }
       if (res.code === 'seats')
-        { setSeats(res.left); return fail('남은 자리가 ' + res.left + '석이에요. 참석자를 줄여서 다시 신청해 주세요.', addBtn); }
+        { setSeats(res.left); return fail(leftLine(res.left) + '. 참석자를 줄여서 다시 신청해 주세요.', addBtn); }
       fail(res.error || '신청을 접수하지 못했어요. 잠시 후 다시 눌러주세요.');
     })
-    .then(() => { sending = false; syncBtn(); btn.textContent = EDU.btn; });
+    .then(() => { sending = false; syncBtn(); btn.textContent = say('btn'); });
 });
 
-function finish(id, dup){
-  $('doneTitle').textContent = dup ? '이미 신청하셨어요' : '신청이 완료됐어요!';
-  $('doneMsg').textContent = dup ? EDU.dupMsg : EDU.doneMsg;
-  $('doneOid').textContent = '접수번호 ' + id;
+function finish(id, dup, waitNo){
+  $('doneTitle').textContent = dup ? '이미 신청하셨어요' : waiting ? EDU.wait.doneTitle : '신청이 완료됐어요!';
+  $('doneMsg').textContent = dup ? EDU.dupMsg : say('doneMsg');
+  $('doneOid').textContent = '접수번호 ' + id + (waitNo ? ' · 대기 ' + waitNo + '번' : '');
   document.body.classList.remove('closed');
   document.body.classList.add('submitted');
   syncSticky();
@@ -1409,24 +1444,49 @@ function finish(id, dup){
   window.scrollTo(0, 0);
 }
 
-/* 마감은 체험교육에만 있습니다 — 상담은 정원도 마감도 없어서 늘 열려 있어요 */
-function markSeminarClosed(reason){
+/* 마감은 체험교육에만 있습니다 — 상담은 정원도 마감도 없어서 늘 열려 있어요
+   waitFull: 대기 자리까지 모두 찼을 때 */
+const pickGoText = pickOf('seminar') ? pickOf('seminar').querySelector('.pick-go').textContent : '';
+function markSeminarClosed(reason, waitFull){
   closedReason = reason;
+  closedWaitFull = !!waitFull;
+  waiting = false;
   const card = pickOf('seminar');
   if (card) {
     card.classList.add('off');
     card.querySelector('.pick-go').textContent =
-      reason === 'deadline' ? '신청 기간이 끝났어요' : '자리가 모두 찼어요';
+      reason === 'deadline' ? '신청 기간이 끝났어요' : waitFull ? '대기까지 모두 찼어요' : '자리가 모두 찼어요';
   }
-  if (track === 'seminar') showClosed(reason);
+  if (track === 'seminar') showClosed(reason, waitFull);
 }
 
-function showClosed(reason){
+/* 정원이 차서 대기 신청으로 바꿉니다 — 서버가 대기 자리(wait)를 알려줄 때만. w.left = 남은 대기 자리 */
+function enterWait(w){
+  waiting = true;
+  closedReason = '';
+  const card = pickOf('seminar');
+  if (card) {
+    card.classList.remove('off');
+    card.querySelector('.pick-go').textContent = '대기 신청하기';
+  }
+  setSeats(w.left);
+  if (!document.body.classList.contains('submitted')) { document.body.classList.remove('closed'); syncSticky(); }
+}
+/* 대기 중에 자리가 다시 나면 참석 신청으로 되돌립니다 */
+function leaveWait(left){
+  waiting = false;
+  const card = pickOf('seminar');
+  if (card) card.querySelector('.pick-go').textContent = pickGoText;
+  setSeats(left);
+}
+
+function showClosed(reason, waitFull){
   const late = reason === 'deadline';
   $('closedTitle').textContent = late ? '신청 기간이 끝났어요' : '신청이 마감됐어요';
   $('closedMsg').textContent = late
     ? '이번 체험교육 신청은 마감됐어요.\n클럽하와이 1:1 상담은 계속 신청하실 수 있어요.'
-    : '준비한 좌석이 모두 찼어요.\n클럽하와이 1:1 상담은 계속 신청하실 수 있어요.';
+    : (waitFull ? '준비한 좌석과 대기 자리가 모두 찼어요.' : '준비한 좌석이 모두 찼어요.') +
+      '\n클럽하와이 1:1 상담은 계속 신청하실 수 있어요.';
   document.body.classList.add('closed');
   syncSticky();
   markPeek('closed');
@@ -1437,8 +1497,11 @@ function checkOpen(){
   if (PREVIEW || !APPS_SCRIPT_URL) return;
   callServer({ action:'status', track:SERVER_TRACK })
     .then(res => {
+      const submitted = document.body.classList.contains('submitted');
+      /* 정원이 찼어도 대기 자리가 남아 있으면 대기 신청으로 엽니다 */
+      if (res.wait && !res.wait.closed && !submitted) return enterWait(res.wait);
       if (typeof res.left === 'number') setSeats(res.left);
-      if (res.closed && !document.body.classList.contains('submitted')) markSeminarClosed(res.reason);
+      if (res.closed && !submitted) markSeminarClosed(res.reason, !!res.wait);
     })
     .catch(e => console.warn('[마감 확인]', e));
 }
@@ -1494,8 +1557,10 @@ if (PREVIEW) {
     if (!b) return;
     document.body.classList.remove('submitted', 'closed');
     if (!track) showTrack('seminar');   // 갈래를 안 고른 채로 눌러도 화면이 보이게
-    if (b.dataset.s === 'done') finish(sampleId(), false);
-    else if (b.dataset.s === 'closed') showClosed('full');
+    if (b.dataset.s === 'wait') { enterWait({ left:5 }); markPeek('wait'); window.scrollTo(0, 0); return; }
+    if (b.dataset.s === 'form' && waiting) leaveWait(Infinity);
+    if (b.dataset.s === 'done') finish(sampleId(), false, waiting ? 1 : 0);
+    else if (b.dataset.s === 'closed') showClosed('full', waiting);
     else { syncSticky(); markPeek('form'); window.scrollTo(0, 0); }
   });
   markPeek('form');
