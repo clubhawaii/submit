@@ -158,7 +158,6 @@
   .price .per{font-size:13.5px;color:var(--ink-mid);font-weight:500}
   .price .sub{font-size:13.5px;color:var(--ink-mid);margin-top:8px;letter-spacing:-0.3px}
   .price .sub b{color:var(--ink)}
-  .brand.b .price .with b{color:var(--navy)}
   .price .setup{
     margin-top:12px;background:#FFF7FB;border:1px solid var(--pink-line);
     border-radius:10px;padding:10px 12px;font-size:13.5px;letter-spacing:-0.3px;
@@ -674,8 +673,7 @@
         </ul>
 
         <div class="price">
-          <div class="row"><span class="won">29,900원</span><span class="per">/ 월 · VAT 별도</span></div>
-          <div class="sub with">클럽하와이와 함께 이용 시 <b>월 19,900원</b> (VAT 별도)</div>
+          <div class="row" data-v="유미니월요금"><span class="was">29,900원</span><span class="won">14,900원</span><span class="per">/ 월 · VAT 별도</span></div>
           <div class="sub" data-v="유미니비용"><b>세팅비 1,000,000원 (VAT 별도) · 최초 1회</b></div>
         </div>
       </article>
@@ -1172,8 +1170,15 @@ function applyDiscount(c){
     setText(할인이름, 이름 + ' <b>' + 원(할인) + '원</b><span class="vat">' + 짝 + '와 함께 가입 시 · VAT 별도</span>');
     showSec(줄이름, true);
   };
-  // 유미니 월 구독료는 시트 값을 쓰지 않는다 — 2026-10-15 정책(단독 29,900원 · 클럽하와이와 함께 19,900원)을
-  // 페이지에 고정했다. 옛 회차 줄에 남은 14,900원이 다시 보이지 않게 하려는 것
+  // 유미니 월 구독료 — 시트에 적으면 그 값으로(할인가만 적으면 취소선 없이)
+  // 월 요금은 만 원 안팎이라, 실수로 엉뚱한 값(예: 회차 코드)이 들어오면 무시한다
+  const 월값 = v => (Number(v || 0) >= 1000 ? Number(v) : 0);
+  const 월정 = 월값(c.유미니월정가), 월할 = 월값(c.유미니월할인가);
+  if (월정 > 0 || 월할 > 0) {
+    const 취소 = (월정 > 0 && 월할 > 0 && 월할 < 월정) ? '<span class="was">' + 원(월정) + '원</span>' : '';
+    const 지금 = 월할 > 0 ? 월할 : 월정;
+    setText('유미니월요금', 취소 + '<span class="won">' + 원(지금) + '원</span><span class="per">/ 월 · VAT 별도</span>');
+  }
   세팅('정가하와이', '할인하와이', '하와이정가', '하와이할인', '하와이할인줄', '유미니');
   세팅('정가유미니', '할인유미니', '유미니정가', '유미니할인', '유미니할인줄', '클럽하와이');
 }
