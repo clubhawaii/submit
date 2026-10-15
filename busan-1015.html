@@ -942,6 +942,287 @@
   @media (min-width:600px){
     .scard{padding:var(--g4) 40px var(--g2)}
   }
+  /* ═════ 글자 키우기 — 40~50대 기준 ═════ */
+  .hero .org{font-size:13.5px}
+  .receipt .rt{font-size:12.5px}
+  .receipt h1 .lead{font-size:20px}
+  .receipt h1 .l1{font-size:28px}
+  .receipt h1 .base{font-size:17.5px}
+  .receipt h1 .l3{font-size:44px}
+  .receipt .desc{font-size:16.5px;line-height:1.65}
+  .receipt .fine{font-size:14px}
+  .rush .cap{font-size:22px}
+  .rush .due{font-size:16.5px}
+  .tape.t1,.tape.t2{font-size:18px}
+  .cta{font-size:20px;padding:20px}
+  .bh h2{font-size:31px}
+  .bh p{font-size:17px}
+  .who .who-t{font-size:22px}
+  .who .who-s{font-size:17px}
+  .ph h2{font-size:33px}
+  .ph p{font-size:16.5px}
+  .pt th{font-size:14.5px}
+  .pt td:first-child{font-size:17px}
+  .pt td s{font-size:15px}
+  .pt td b{font-size:21px}
+  .tot .tl{font-size:19px}
+  .tot .tl small{font-size:15px}
+  .tot .was{font-size:15.5px}
+  .tot .save{font-size:15.5px}
+  .tot .vat{font-size:13.5px}
+  .pnote{font-size:15px}
+  .solo2 h3{font-size:23px}
+  .scard .pt tr.grp td{font-size:16px}
+  .snote{font-size:15px}
+  .prod .ph3{font-size:23px}
+  .prod .pd{font-size:17px}
+  .steps2 .sd b{font-size:27px}
+  .steps2 .sd b.t{font-size:21px}
+  .steps2 .sd span{font-size:15px}
+  .steps2 .sc b{font-size:20px}
+  .steps2 .sc p{font-size:16.5px}
+  .notice p{font-size:18px}
+  .notice p:last-child{font-size:17px}
+  .consult{font-size:16px!important}
+  label.q{font-size:18px}
+  .pick{font-size:17px}
+  input[type=text],input[type=tel],textarea{font-size:17px;padding:16px}
+  .agree .txt b{font-size:17px}
+  .agree .txt small{font-size:15px}
+  .contact .tx b{font-size:18px}
+  .contact .tx small{font-size:15px}
+  footer{font-size:14px}
+  .dock .left small{font-size:13.5px}
+  .dock .left b{font-size:21px}
+  @media (min-width:600px){
+    .bh h2{font-size:38px}
+    .ph h2{font-size:40px}
+    .pt td b{font-size:26px}
+    .pt td:first-child{font-size:18px}
+  }
+  @media (max-width:400px){
+    .receipt h1 .lead{font-size:18px}
+    .receipt h1 .l1{font-size:25px}
+    .receipt h1 .l3{font-size:40px}
+    .receipt .desc{font-size:15.5px}
+    .bh h2{font-size:28px}
+    .pt th:first-child{width:40%}
+    .pt td:first-child{font-size:16px}
+    .pt td s{font-size:14px}
+    .pt td b{font-size:19px}
+  }
+  @media (max-width:370px){
+    .pt td:first-child{font-size:15px}
+    .pt td s{font-size:13px}
+    .pt td b{font-size:17px}
+    .scard .pt td b{font-size:15px;letter-spacing:-0.8px}
+    .pt td:nth-child(2){padding-right:6px}
+    .scard .pt th:first-child{width:34%}
+  }
+
+  .pt td:nth-child(2){padding-right:12px}
+  @media (max-width:400px){ .scard .pt td b{font-size:17.5px} }
+
+  /* ═════ 움직임 ═════ */
+  /* 흐르는 띠 */
+  .tape span{animation:flow 26s linear infinite}
+  .tape.t2 span{animation-direction:reverse}
+  /* 스크롤하면 떠오르기 (순서대로) */
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+  .rv.in{opacity:1;transform:none}
+  /* 정상가에 줄이 그어지고 → 특별가에 형광펜이 칠해짐 */
+  .pt td s,.tot .was{text-decoration:none;background:linear-gradient(currentColor,currentColor) no-repeat 0 55%/0% 2px;transition:background-size .5s ease var(--d,0s)}
+  .pt.go td s,.tot.go .was{background-size:100% 2px}
+  .pt td b{box-shadow:none;background:linear-gradient(var(--pink-t),var(--pink-t)) no-repeat 0 100%/0% 9px;transition:background-size .5s ease calc(var(--d,0s) + .35s)}
+  .pt.go td b{background-size:100% 9px}
+  .pt td b.free{background:none}
+  .pt td b.free{display:inline-block;transform:scale(.6);opacity:0;transition:transform .45s cubic-bezier(.3,1.6,.5,1) calc(var(--d,0s) + .35s),opacity .3s ease calc(var(--d,0s) + .35s)}
+  .pt.go td b.free{transform:none;opacity:1}
+  .who .who-t mark{background:linear-gradient(var(--pink-t),var(--pink-t)) no-repeat 0 88%/0% 38%;transition:background-size .9s ease .3s}
+  .who .who-t.in mark{background-size:100% 38%}
+  .notice b{box-shadow:none;background:linear-gradient(var(--pink-t),var(--pink-t)) no-repeat 0 100%/0% 9px;transition:background-size .7s ease .3s}
+  .notice p.in b{background-size:100% 9px}
+  /* 합계: 절감 배지 튀어나오기 */
+  .tot .save{transform:scale(.7);opacity:0;transition:transform .5s cubic-bezier(.3,1.6,.5,1) 1.3s,opacity .3s ease 1.3s}
+  .tot.go .save{transform:none;opacity:1}
+  /* 버튼 반짝 */
+  .cta{position:relative;overflow:hidden}
+  .cta::before{content:'';position:absolute;top:0;bottom:0;left:-40%;width:30%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shine 3.6s ease-in-out infinite}
+  button.cta:disabled::before{display:none}
+  @keyframes shine{0%,55%{left:-40%}85%,100%{left:120%}}
+  /* 진행 일정: 왼쪽 선이 차오름 */
+  @media (prefers-reduced-motion:reduce){
+    .rv{opacity:1;transform:none}
+    .pt td s,.tot .was{background-size:100% 2px}
+    .pt td b{background-size:100% 9px}
+    .pt td b.free,.tot .save{transform:none;opacity:1}
+    .cta::before{display:none}
+  }
+  /* ═════ 합계 줄 — 두 줄로 압축 ═════ */
+  .tot{display:block;padding:18px 20px 20px}
+  .tot .tl{font-size:15px;font-weight:500;color:#bdbdbd;line-height:1.4;letter-spacing:-0.01em}
+  .tot .tr{display:flex;flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 12px;margin-top:10px;text-align:left}
+  .tot .was{font-family:var(--num);font-weight:500;font-stretch:108%;font-size:17px;color:#9a9a9a}
+  .tot .now{margin-right:auto}
+  .tot .now .n{font-size:48px}
+  .tot .save{white-space:nowrap}
+  @media (min-width:600px){
+    .tot{padding:22px 40px 24px}
+    .tot .now .n{font-size:58px}
+  }
+  @media (max-width:370px){
+    .tot .now .n{font-size:40px}
+    .tot .was{font-size:15px}
+  }
+  .tot .tl{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .tot .tl .save{font-size:14.5px;padding:4px 9px}
+  .tot .tr{flex-wrap:nowrap;align-items:baseline;justify-content:flex-start;gap:10px;margin-top:8px}
+  .tot .now{margin-right:0}
+  .tot .vat{margin-left:auto;font-size:13px;color:#9a9a9a;white-space:nowrap}
+  @media (max-width:370px){
+    .tot{padding-left:16px;padding-right:16px}
+    .tot .tl{font-size:13.5px}
+    .tot .tl .save{font-size:13px;padding:3px 7px}
+    .tot .now .n{font-size:38px}
+    .tot .now i{font-size:14px}
+    .tot .vat{font-size:12px}
+  }
+  /* ═════ 푸터 ═════ */
+  footer.ft{text-align:left;padding:var(--g5) 0 var(--g6);background:var(--ink);color:#bdbdbd;font-size:14px;line-height:1.7}
+  .ft .fb{font-size:15.5px;font-weight:700;color:#fff;letter-spacing:-0.02em}
+  .ft .fb2{margin-top:var(--g3);padding-top:var(--g3);border-top:1px solid #333}
+  .ft .fi{margin:8px 0 0}
+  .ft .fi div{display:flex;gap:10px}
+  .ft .fi dt{flex:0 0 auto;color:#8a8a8a;font-weight:400}
+  .ft .fi dd{margin:0;color:#d4d4d4;word-break:keep-all}
+  .ft .fi a{color:#d4d4d4;text-decoration:none}
+  .ft .fv{margin:var(--g3) 0 0;font-size:13px;color:#8a8a8a}
+  /* 섹션 제목 위 선 제거 */
+  .bh,.dark .bh,.brief .bh{border-top:0;padding-top:0}
+  .notice{border-top:0;margin-top:var(--g3);padding-top:0}
+  .ft .fc{margin:6px 0 0;font-size:13px;color:#8a8a8a}
+  .dock a{white-space:nowrap}
+  @media (max-width:370px){.dock a{font-size:14px;padding:12px 14px}.dock .left b{font-size:18px}}
+  /* ═════ 히어로 · 140만원 할인 한 줄 ═════ */
+  .receipt h1 .l2{flex-wrap:nowrap;white-space:nowrap;align-items:baseline;gap:8px;margin:var(--g1) 0 0}
+  .receipt h1 .l2 small{font-size:32px;letter-spacing:-0.04em}
+  .receipt h1 .l2 .n{font-size:104px}
+  @media (max-width:400px){
+    .receipt-wrap{margin-left:6px;margin-right:6px}
+    .receipt{padding-left:16px;padding-right:16px}
+    .receipt h1 .l2{gap:6px}
+    .receipt h1 .l2 .n{font-size:88px;letter-spacing:-5px}
+    .receipt h1 .l2 small{font-size:27px}
+  }
+  @media (max-width:360px){
+    .receipt h1 .l2 .n{font-size:74px;letter-spacing:-4px}
+    .receipt h1 .l2 small{font-size:23px}
+  }
+
+  /* ═════ 입체감 ═════ */
+  /* 히어로: 빛과 바닥 그림자 */
+  .hero{background:
+      radial-gradient(60% 50% at 18% 12%,rgba(255,255,255,.28),transparent 70%),
+      radial-gradient(50% 45% at 88% 85%,rgba(160,20,80,.35),transparent 70%),
+      linear-gradient(180deg,#FF86B7 0%,var(--pink) 45%,#EC4A8A 100%)}
+  .receipt-wrap{position:relative;filter:drop-shadow(0 26px 30px rgba(110,10,50,.38)) drop-shadow(0 4px 6px rgba(110,10,50,.18))}
+  .slot{height:14px;background:linear-gradient(180deg,#4a4a4a,#1c1c1c);box-shadow:inset 0 3px 6px rgba(0,0,0,.6),0 2px 0 rgba(255,255,255,.25)}
+  /* 버튼: 아래로 두께감 */
+  .cta{box-shadow:0 5px 0 #C93D76,0 14px 26px rgba(236,74,138,.35);transition:transform .12s ease,box-shadow .12s ease}
+  .cta:hover{transform:translateY(-1px);box-shadow:0 6px 0 #C93D76,0 18px 30px rgba(236,74,138,.4)}
+  .cta:active{transform:translateY(4px);box-shadow:0 1px 0 #C93D76,0 6px 12px rgba(236,74,138,.3)}
+  button.cta:disabled{box-shadow:0 5px 0 #a8a8a8;transform:none}
+  .rush .cta{box-shadow:0 5px 0 #A8285C,0 16px 34px rgba(255,95,159,.35)}
+  /* 카운트다운 숫자판 */
+  .flip .dg{box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 2px 0 #000,0 10px 18px rgba(0,0,0,.55)}
+  .flip .day{box-shadow:0 0 28px rgba(255,95,159,.55),0 4px 0 #A8285C}
+  /* 가격 카드 · 단독 카드 */
+  .pcard{box-shadow:0 30px 60px rgba(25,25,25,.12),0 6px 14px rgba(25,25,25,.06)}
+  .scard{box-shadow:0 20px 44px rgba(25,25,25,.09),0 4px 10px rgba(25,25,25,.05)}
+  .tot{background:linear-gradient(180deg,#262626 0%,#141414 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+  .tot .save{box-shadow:0 3px 0 #C9A400}
+  /* 서비스 카드 */
+  .prod{background:#fff;padding:var(--g4) 22px var(--g4);border-top:4px solid;box-shadow:0 18px 40px rgba(25,25,25,.09),0 3px 8px rgba(25,25,25,.05)}
+  .prod.h{border-color:var(--pink)}
+  .prod.y{border-color:var(--blue-t)}
+  .prods{gap:var(--g4)}
+  /* 진행 일정: 흰 카드 */
+  .steps2{border-top:0;display:grid;gap:var(--g2)}
+  .steps2 li{background:#fff;border-bottom:0;padding:var(--g4) 20px;box-shadow:0 10px 26px rgba(25,25,25,.07),0 2px 6px rgba(25,25,25,.04);border-left:4px solid var(--ink)}
+  .steps2 li.key{border-left-color:var(--pink)}
+  /* 신청 폼 패널 */
+  .panel{background:#fff;padding:var(--g4) 20px var(--g4);box-shadow:0 24px 50px rgba(25,25,25,.09),0 4px 10px rgba(25,25,25,.05)}
+  .panel input[type=text],.panel input[type=tel],.panel textarea{background:var(--bg);border-color:transparent}
+  .panel input[type=text]:focus,.panel input[type=tel]:focus,.panel textarea:focus{background:#fff;border-color:var(--ink)}
+  /* 문의 아이콘 */
+  .contact .ic{box-shadow:0 3px 0 rgba(0,0,0,.12)}
+
+  /* ═════ 흐르는 띠 — 두께감 · 교차 ═════ */
+  .tapes{height:150px;margin:var(--g4) 0 var(--g6);perspective:800px}
+  .tape{left:-8%;width:116%;top:50%!important;padding:13px 0;font-size:18px!important}
+  .tape::before,.tape::after{content:'';position:absolute;left:0;right:0;height:0;border-top:2px dashed rgba(25,25,25,.22)}
+  .tape::before{top:5px}
+  .tape::after{bottom:5px}
+  .tape.t1{z-index:2;transform:translateY(-50%) rotate(-6deg)!important;
+    background:linear-gradient(180deg,#FFE768 0%,var(--yellow-t) 48%,#EDBE00 100%);
+    box-shadow:0 18px 30px rgba(0,0,0,.55),0 3px 0 #B08C00,inset 0 1px 0 rgba(255,255,255,.6)}
+  .tape.t2{z-index:1;opacity:1;transform:translateY(-50%) rotate(5deg)!important;
+    background:linear-gradient(180deg,#FF8BBA 0%,var(--pink) 48%,#D9407E 100%);
+    box-shadow:0 12px 24px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.35)}
+  .tape.t2::before,.tape.t2::after{border-top-color:rgba(255,255,255,.35)}
+  .tape.t2 span{text-shadow:0 1px 0 rgba(120,0,50,.35)}
+  @media (min-width:700px){
+    .tapes{height:170px}
+    .tape{left:-4%;width:108%;padding:16px 0;font-size:21px!important}
+    .tape.t1{transform:translateY(-50%) rotate(-3.2deg)!important}
+    .tape.t2{transform:translateY(-50%) rotate(2.6deg)!important}
+  }
+  @media (min-width:1200px){
+    .tapes{height:180px}
+    .tape{font-size:22px!important}
+    .tape.t1{transform:translateY(-50%) rotate(-2.4deg)!important}
+    .tape.t2{transform:translateY(-50%) rotate(2deg)!important}
+  }
+
+  /* ═════ PC 화면 ═════ */
+  @media (min-width:900px){
+    .hero{padding:var(--g6) 0 80px}
+    .hero .wrap{max-width:760px}
+    .receipt-wrap{margin:-6px 28px 0}
+    .receipt{padding:32px 44px 44px}
+    .receipt h1 .lead{font-size:24px}
+    .receipt h1 .l1{font-size:36px}
+    .receipt h1 .base{font-size:19px}
+    .receipt h1 .l2 .n{font-size:150px;letter-spacing:-8px}
+    .receipt h1 .l2 small{font-size:44px}
+    .receipt .desc{font-size:18px}
+    .receipt .fine{font-size:15px}
+    .hcta{max-width:420px;margin-left:auto;margin-right:auto}
+    .rush{padding-top:80px}
+    .rush .cap{font-size:26px}
+    .flip .dg{width:58px;height:92px;font-size:56px}
+    .flip .day{height:92px;font-size:34px;padding:0 16px}
+    .flip .col{font-size:40px}
+    .rush .wrap .cta{max-width:520px;margin:0 auto}
+    .band{padding:96px 0}
+    .perks{padding:96px 0}
+    .wrap{max-width:820px}
+    .prods{grid-template-columns:1fr 1fr}
+    .prod{padding:var(--g5) 32px}
+    .steps2{grid-template-columns:repeat(3,1fr);gap:var(--g3)}
+    .steps2 li{grid-template-columns:1fr;gap:12px;border-left:0;border-top:4px solid var(--ink);padding:var(--g4) 24px}
+    .steps2 li.key{border-top-color:var(--pink)}
+    .panel{padding:var(--g5) 48px}
+    #apply .bh,#apply .err{max-width:100%}
+  }
+  /* 띠 두 줄이 X자로 교차하며 둘 다 읽히게 */
+  .tapes{height:170px}
+  .tape.t1{top:36%!important}
+  .tape.t2{top:68%!important}
+  @media (min-width:700px){ .tapes{height:190px} .tape.t1{top:34%!important} .tape.t2{top:70%!important} }
+  @media (min-width:1200px){ .tapes{height:200px} }
+  /* 이용 전 확인: 박스로 */
+  .notice{background:var(--bg);padding:var(--g4) 22px;border-left:4px solid var(--ink);box-shadow:0 10px 26px rgba(25,25,25,.05)}
 </style>
 </head>
 <body>
@@ -960,8 +1241,7 @@
             <span class="lead">부산 학원 원장님을 위한 특별 가입 혜택!</span>
             <span class="l1">클럽하와이와 유미니를<br>함께 신청하면</span>
             <span class="base">6개월 기준</span>
-            <span class="l2"><span class="n">140</span><small>만원</small></span>
-            <span class="l3">할인</span>
+            <span class="l2"><span class="n">140</span><small>만원 할인</small></span>
           </h1>
           <p class="desc">학원 운영부터 학부모 상담까지, <br>우리 학원에 필요한 서비스를 특별한 가격으로 이용해 보세요.</p>
           <div class="fine"><span class="nw">부산지회 회원 학원 대상 ·</span> <span class="nw">15곳 이상 공동구매 성립 시 ·</span> <span class="nw">VAT 별도</span></div>
@@ -988,8 +1268,8 @@
       <div class="closed" id="timerClosed">신청이 마감되었습니다.<br>다음 공동구매는 11월 초 예정입니다. 아래에서 상담을 신청해 주세요.</div>
     </div>
     <div class="tapes" aria-hidden="true">
-      <div class="tape t1"><span>신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · </span></div>
-      <div class="tape t2"><span>BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · </span></div>
+      <div class="tape t1"><span>신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · 신청 마감 10.24 · LIMITED · </span></div>
+      <div class="tape t2"><span>BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · BUSAN ONLY · 부산지회 회원 특별 가입 혜택 · </span></div>
 
     </div>
     <div class="wrap"><a class="cta" href="#apply">특별혜택 신청하기</a></div>
@@ -1022,11 +1302,10 @@
           </tbody>
         </table>
         <div class="tot">
-          <div class="tl">두 서비스 함께 이용 시<small>6개월 기준</small></div>
+          <div class="tl"><span>두 서비스 함께 이용 · 6개월 기준</span><span class="save">140만원 절감</span></div>
           <div class="tr">
-            <span class="was">일반 가격 약 412만원</span>
+            <span class="was">412만원</span>
             <span class="now"><i>약</i><span class="n">272</span><small>만원</small></span>
-            <span class="save">140만원 절감</span>
             <span class="vat">VAT 별도</span>
           </div>
         </div>
@@ -1112,7 +1391,7 @@
 
       <div class="err" id="err"></div>
 
-      <form id="form" novalidate>
+      <form id="form" class="panel" novalidate>
         <input type="text" name="__hp" id="__hp" tabindex="-1" autocomplete="off"
                style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
 
@@ -1188,12 +1467,28 @@
     </div>
   </section>
 
-  <footer><span class="m">CLUB HAWAII</span> · ㈜이즈유 · clubhawaii.co.kr<br>모든 금액은 VAT 별도입니다.</footer>
+  <footer class="ft">
+    <div class="wrap">
+      <div class="fb">클럽하와이 (Club Hawaii)</div>
+      <dl class="fi">
+        <div><dt>사업자등록번호</dt><dd>876-86-02113</dd></div>
+        <div><dt>통신판매번호</dt><dd>2022-대구달서-1814</dd></div>
+        <div><dt>통합상담센터</dt><dd><a href="tel:010-2939-7909">010-2939-7909</a></dd></div>
+      </dl>
+      <div class="fb fb2">주식회사 이즈유</div>
+      <dl class="fi">
+        <div><dt>대표자</dt><dd>박현숙</dd></div>
+        <div><dt>주소</dt><dd>42802 대구광역시 달서구 송현로7길 10, 1113동 201호</dd></div>
+      </dl>
+      <p class="fv">모든 금액은 VAT 별도입니다.</p>
+      <p class="fc">ⓒ 2026 클럽하와이. All rights reserved.</p>
+    </div>
+  </footer>
 
   <div class="dock" id="dock">
     <div class="in">
       <div class="left"><small id="dockCap">신청 마감까지</small><b id="dockT">-</b></div>
-      <a href="#apply">참여 신청 →</a>
+      <a href="#apply">특별혜택 신청하기 →</a>
     </div>
   </div>
 
@@ -1250,6 +1545,58 @@ const 콤마 = n => Number(n).toLocaleString('ko-KR');
     setTimeout(tick, 1000);
   }
   tick();
+})();
+
+/* ── 움직임: 순서대로 떠오르기 · 가격표 줄긋기 · 숫자 카운트 ── */
+(function motion(){
+  if (!('IntersectionObserver' in window)) return;
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1) 순서대로 떠오를 요소
+  const groups = [
+    ['.who .bh', '.who .who-t', '.who .who-s'],
+    ['.perks .ph'], ['.pnote'], ['.solo2 h3', '.scard', '.snote'],
+    ['.prods .prod'], ['.steps2 li'], ['.notice p'],
+    ['#apply .bh'], ['.contact a']
+  ];
+  groups.forEach(g => g.forEach(sel => document.querySelectorAll(sel).forEach((el, i) => {
+    el.classList.add('rv'); el.style.setProperty('--d', (i * 0.12) + 's');
+  })));
+  document.querySelectorAll('.band .bh').forEach(el => el.classList.add('rv'));
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .2, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // 2) 가격표: 한 줄씩 정상가에 줄 긋고 특별가 칠하기
+  document.querySelectorAll('.pt tbody tr').forEach((tr, i) => tr.style.setProperty('--d', (i % 6) * 0.18 + 's'));
+  const io2 = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('go'); io2.unobserve(e.target); }
+  }), { threshold: .35 });
+  document.querySelectorAll('.pt').forEach(el => io2.observe(el));
+
+  // 3) 숫자 카운트
+  function count(el, from, to, dur){
+    if (reduce) { el.textContent = to; return; }
+    const t0 = performance.now();
+    const step = now => {
+      const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(from + (to - from) * e).toLocaleString('ko-KR');
+      if (p < 1) requestAnimationFrame(step);
+    };
+    el.textContent = from; requestAnimationFrame(step);
+  }
+  const hero = document.querySelector('.receipt h1 .l2 .n');
+  if (hero) { hero.textContent = '0'; setTimeout(() => count(hero, 0, 140, 1300), 700); }
+
+  const tot = document.querySelector('.tot');
+  if (tot) {
+    const n = tot.querySelector('.now .n'); n.textContent = '412';
+    const io3 = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { tot.classList.add('go'); setTimeout(() => count(n, 412, 272, 1200), 350); io3.unobserve(tot); }
+    }), { threshold: .5 });
+    io3.observe(tot);
+  }
 })();
 
 /* ── 스크롤 등장 효과 ── */
